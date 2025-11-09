@@ -35,17 +35,16 @@ const HomeHero = () => {
     
       </p>
       <div className="flex gap-2">
-        <button className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-white/10 bg-white/10 px-3 py-1 font-semibold transition-colors hover:bg-white/20">
+        <button className="flex  items-center justify-center gap-1 rounded-[10px] border border-white/10 bg-white/10 px-5 py-1 text-sm font-semibold transition-colors hover:bg-white/20">
           <BiBookmark size={15} />
           <span className="">Watchlist</span>
         </button>
 
-        <button className="w-10   rounded-[10px] border border-white/10 bg-white/10 p-2 transition-colors hover:bg-white/20">
-          <FaRegHeart size={15} className="mx-auto" />
-        </button>
+     
 
-        <button className="w-10  rounded-[10px] bg-white  px-2 text-black transition-colors hover:bg-white/90">
-          <BsInfoCircle size={15} className="mx-auto" />
+        <button className="flex items-center justify-center gap-1 rounded-[10px] border border-white/10 text-black bg-white/80 px-3 py-1 text-sm  font-semibold transition-colors hover:bg-white">
+          <BsInfoCircle size={15} />
+             <span className=" hidden sm:block">Details</span>
         </button>
       </div>
     </div>

@@ -6,16 +6,16 @@ import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 
 const MovieCards = () => {
   return (
-    <div className="flex h-auto flex-col justify-end rounded-2xl border border-white/30 bg-black px-3 py-4  md:px-5 md:py-7 md:h-96 ">
-      <h2 className="mb-1 text-lg md:text-2xl font-bold">Interstellar</h2>
-      <div className="mb-5 flex items-center gap-2 text-sm md:text-lg">
-        <AiFillStar size={20} />
+    <div className="flex h-auto flex-col justify-end rounded-2xl border border-white/30 bg-black px-3 py-4  md:h-96 md:px-4 md:py-5">
+      <h2 className="text-lg font-bold md:text-xl">Interstellar</h2>
+      <div className="mb-3 flex items-center gap-2 text-sm">
+        <AiFillStar size={16} />
         <span>
           <b>8.8</b> • 2010
         </span>
       </div>
 
-      <div className=" mb-4 md:mb-7 flex flex-wrap gap-1 md:gap-2 text-[11px]  font-semibold">
+      <div className="mb-5 flex flex-wrap gap-1 text-[11px] font-semibold  md:gap-2">
         <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">
           Action
         </p>
@@ -27,17 +27,14 @@ const MovieCards = () => {
         </p>
       </div>
 
-      <div className="flex gap-2">
-        <button className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-white/10 bg-white/10 p-2 font-bold transition-colors hover:bg-white/20">
-          <BiBookmark size={18} /><span className="hidden min-[420px]:block">List</span>
-
-
+      <div className="flex gap-3">
+        <button className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border border-white/10 bg-white/10 px-2 py-1 text-sm font-semibold transition-colors hover:bg-white/20">
+          <BiBookmark size={15} />
+          <span className="hidden min-[420px]:block">Watchlist</span>
         </button>
-        <button className=" w-9 rounded-[10px] border border-white/10 bg-white/10 p-1 transition-colors hover:bg-white/20">
-          <FaRegHeart size={18} className="mx-auto" />
-        </button>
-        <button className=" w-9 rounded-[10px] bg-white p-1 text-black transition-colors hover:bg-white/90">
-          <BsInfoCircle size={18} className="mx-auto" />
+
+        <button className="w-12 h-8 rounded-[10px] bg-white px-2 py-1 text-sm text-black transition-colors hover:bg-white/90">
+          <BsInfoCircle size={15} className="mx-auto" />
         </button>
       </div>
     </div>
