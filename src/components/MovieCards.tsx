@@ -3,6 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
+import DetailBtn from './Ui/DetailBtn';
 
 const MovieCards = () => {
   return (
@@ -32,10 +33,8 @@ const MovieCards = () => {
           <BiBookmark size={15} />
           <span className="hidden min-[420px]:block">Watchlist</span>
         </button>
-
-        <button className="w-12 h-8 rounded-[10px] bg-white px-2 py-1 text-sm text-black transition-colors hover:bg-white/90">
-          <BsInfoCircle size={15} className="mx-auto" />
-        </button>
+     <DetailBtn/>
+     
       </div>
     </div>
   );

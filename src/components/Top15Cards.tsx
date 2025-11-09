@@ -2,11 +2,15 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
+import { useContext } from 'react';
+import Modal from './modal';
+import { ModalContext } from '../context/ModalContext';
 
 const Top15Cards = () => {
+  const {setIsOpen}= useContext(ModalContext)!
   return (
 
-  <div className="flex flex-wrap w-full gap-4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 md:px-6 py-4 shadow-xl shadow-black/20">
+  <div onClick={()=> setIsOpen(true)} className="flex flex-wrap w-full gap-4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 md:px-6 py-4 shadow-xl shadow-black/20">
     
     {/* RNumber */}
     <div className="hidden sm:flex -mr-6 md:-mr-8 items-center justify-center">

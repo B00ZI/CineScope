@@ -1,14 +1,25 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
-import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
+import { IoClose, IoCalendarOutline, IoTimeOutline, IoPricetag } from 'react-icons/io5';
+import { ModalContext } from '../context/ModalContext';
+import { useContext } from 'react';
+
 
 const Modal = () => {
+ 
+  const {IsOpen , setIsOpen} = useContext(ModalContext)!
+
+ let css = ` ${IsOpen ? "":"hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm">
-      <div className="linear-to-b  h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 from-gray-900/95 to-black/95 shadow-2xl backdrop-blur-md">
+    
+    <div  onClick={()=>setIsOpen(false)} className= {css}  >
+
+
+      <div   onClick={(e) => e.stopPropagation()}   className="linear-to-b  h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 from-gray-900/95 to-black/95 shadow-2xl backdrop-blur-md">
         {/* close btn  */}
-        <button className=" sticky top-4 left-[90%] z-70 rounded-full bg-black/40 border border-black/50 p-2 transition-colors hover:bg-black/70">
+        <button onClick={()=>setIsOpen(false)} className="cursor-pointer  sticky top-4 left-[90%] z-70 rounded-full bg-black/40 border border-black/50 p-2 transition-colors hover:bg-black/70">
           <IoClose size={24} className="text-white" />
         </button>
 
@@ -52,10 +63,10 @@ const Modal = () => {
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-sm">
             <p className="mb-3 text-sm text-white/50">Your Rating</p>
             <div className="flex gap-1">
-              <AiFillStar size={32} className="text-yellow-400" />
-              <AiFillStar size={32} className="text-yellow-400" />
-              <AiFillStar size={32} className="text-yellow-400" />
-              <AiFillStar size={32} className="text-yellow-400" />
+              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
+              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
+              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
+              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
               <AiOutlineStar size={32} className="text-white/30" />
               <span className="ml-3 flex items-center text-lg font-semibold text-white">
                 4/5
@@ -123,7 +134,7 @@ const Modal = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 sm:flex-row">
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
+            <button className="cursor-pointer flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
               <BiSolidBookmark size={20} />
               In Watchlist
             </button>

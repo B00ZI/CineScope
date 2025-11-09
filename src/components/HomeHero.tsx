@@ -1,10 +1,15 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 
+import { ModalContext } from '../context/ModalContext';
+import { useContext } from 'react';
+
 const HomeHero = () => {
+
+ const {setIsOpen}  = useContext(ModalContext)! 
+
   return (
     <div className="flex  min-h-[55vh] flex-col items-start justify-center rounded-2xl bg-gray-900 p-4 sm:pl-12  ">
       <p className="rounded-xl mb-4 border border-white/10 bg-white/7 px-3 py-1 text-[10px]">
@@ -42,9 +47,9 @@ const HomeHero = () => {
 
      
 
-        <button className="flex items-center justify-center gap-1 rounded-[10px] border border-white/10 text-black bg-white/80 px-3 py-1 text-sm  font-semibold transition-colors hover:bg-white">
+        <button onClick={()=>setIsOpen(true)} className="flex items-center justify-center gap-1 rounded-[10px] border border-white/10 text-black bg-white/80 px-3 py-1 text-sm  font-semibold transition-colors hover:bg-white">
           <BsInfoCircle size={15} />
-             <span className=" hidden sm:block">Details</span>
+             <span className="hidden min-[300px]:block">Details</span>
         </button>
       </div>
     </div>
