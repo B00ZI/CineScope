@@ -1,12 +1,13 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 interface ModalContextType {
   IsOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ModalContext = createContext<ModalContextType | undefined>(undefined);
-
-export default function ModalContextProvider({children,}:{children: ReactNode;}) {
+type props = {children: ReactNode;}
+export default function ModalContextProvider({children}:props) {
 
     const [IsOpen, setIsOpen] = useState(false);
 
