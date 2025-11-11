@@ -4,12 +4,14 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { IoClose, IoCalendarOutline, IoTimeOutline, IoPricetag } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
-
+import { moviesData } from './FetchMovies';
+import type { moviesDataType } from '../types/MovieDataType';
 
 const Modal = () => {
  
-  const {IsOpen , setIsOpen} = useContext(ModalContext)!
-
+  const {IsOpen , setIsOpen , MovieId} = useContext(ModalContext)!
+const modalData = moviesData.filter((x=>MovieId === x.id))[0]
+console.log(modalData)
  let css = ` ${IsOpen ? "":"hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
 
   return (
@@ -27,7 +29,7 @@ const Modal = () => {
         <div className="relative -mt-10 h-48 overflow-hidden rounded-t-2xl sm:h-64">
           <img
             src="https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg"
-            alt="Inception"
+            alt={modalData.name}
             className="h-full w-full object-cover"
           />
           <div className="absolute -inset-1 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent" />
@@ -37,20 +39,21 @@ const Modal = () => {
         <div className="relative z-10 -mt-16 px-4 pb-6 sm:px-6 md:-mt-20 md:px-8 md:pb-8">
           
           <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            Inception
+            {modalData.name}
           </h2>
 
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm md:gap-4">
             <div className="flex items-center gap-1 text-yellow-400">
               <AiFillStar size={20} />
               <span className="text-base font-semibold text-white md:text-lg">
-                8.8
+            {modalData.rating}
+        
               </span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">
               <IoCalendarOutline size={16} />
-              <span>2010</span>
+              <span>{modalData.date}</span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">

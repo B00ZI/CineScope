@@ -8,18 +8,18 @@ import type { moviesDataType } from '../../types/MovieDataType';
 const DetailBtn = ({movie}:{movie:moviesDataType}) => {
 
 
-  const { setIsOpen , setModalData} = useContext(ModalContext)!;
+  const { setIsOpen , setMovieId} = useContext(ModalContext)!;
    
  const openModel= ()=> {
   setIsOpen(true)
-  setModalData(movie)
+  setMovieId(movie.id)
  }
 
   return (
    
       <button
         
-        onClick={()=>setIsOpen(true)}
+        onClick={openModel}
         className="h-8 w-12 rounded-[10px] bg-white px-2 py-1 text-sm text-black transition-colors hover:bg-white/90"
       > 
         <BsInfoCircle size={15} className="mx-auto" />

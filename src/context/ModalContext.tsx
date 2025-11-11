@@ -6,8 +6,8 @@ import type { moviesDataType } from '../types/MovieDataType';
 interface ModalContextType {
   IsOpen: boolean,
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
-  ModalData: moviesDataType | null,
-  setModalData: React.Dispatch<React.SetStateAction<moviesDataType | null>> ,
+  MovieId: number | null,
+  setMovieId: React.Dispatch<React.SetStateAction<number | null>> ,
 }
 
 
@@ -17,7 +17,7 @@ type props = {children: ReactNode;}
 export default function ModalContextProvider({children}:props) {
 
     const [IsOpen, setIsOpen] = useState(false);
-    const [ModalData ,  setModalData] = useState<moviesDataType | null>(null);
+    const [MovieId ,  setMovieId] = useState<number | null>(null);
  
   useEffect(() => {
   document.body.style.overflow = IsOpen ? "hidden" : "auto";
@@ -25,7 +25,7 @@ export default function ModalContextProvider({children}:props) {
  
 
   return (
-    <ModalContext.Provider value={{ IsOpen, setIsOpen , ModalData , setModalData }}>
+    <ModalContext.Provider value={{ IsOpen, setIsOpen , MovieId , setMovieId }}>
       {children}
     </ModalContext.Provider>
   );
