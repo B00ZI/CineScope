@@ -1,6 +1,8 @@
 
 import type { moviesDataType } from "../types/MovieDataType";
 
+import { useEffect , useState } from "react";
+
 
 
 
