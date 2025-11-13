@@ -1,25 +1,31 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import { BsInfoCircle } from 'react-icons/bs';
-import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
-import DetailBtn from './Ui/DetailBtn';
-import type { moviesDataType } from "../types/MovieDataType";
 
+import DetailBtn from './Ui/DetailBtn';
+import WatchlistBtn from './Ui/WatchlistBtn';
+
+import type { moviesDataType } from "../types/MovieDataType";
+import { useContext } from 'react';
+import { ModalContext } from '../context/ModalContext';
 
 
 
 
 const MovieCards = ({ movie }: { movie: moviesDataType }) => {
 
+const {setIsOpen , setMovieId} = useContext(ModalContext)!
 
 
-
+function openModal(){
+  setIsOpen(true)
+  setMovieId(movie.id)
+}
 
 
 
   return (
-<div className="group relative overflow-hidden flex h-60 flex-col justify-end 
+<div onClick={openModal} className="cursor-pointer group relative overflow-hidden flex h-60 flex-col justify-end 
      rounded-2xl border border-white px-3 py-4 md:h-80 md:px-4 md:py-5"
      >
   <div
@@ -39,13 +45,10 @@ const MovieCards = ({ movie }: { movie: moviesDataType }) => {
   <div className="relative z-10 mb-5 flex flex-wrap gap-1 text-[11px] font-semibold md:gap-2">
     {/* {movie.catig.map(type => <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">{type}</p>)} */}
   </div>
-
+    
   <div className="flex gap-3 relative z-10">
-    <button className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border border-white/10 bg-white/10 px-2 py-1 text-sm font-semibold transition-colors hover:bg-white/20">
-      <BiBookmark size={15} />
-      <span className="hidden min-[420px]:block">Watchlist</span>
-    </button>
-    <DetailBtn movie={movie} />
+    <WatchlistBtn/>
+    <DetailBtn />
   </div>
 </div>
   );

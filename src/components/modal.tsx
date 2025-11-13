@@ -1,7 +1,6 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import { BsInfoCircle } from 'react-icons/bs';
-import { IoClose, IoCalendarOutline, IoTimeOutline, IoPricetag } from 'react-icons/io5';
+import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
