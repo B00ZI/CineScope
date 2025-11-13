@@ -4,7 +4,6 @@ import type { TMDBMovie } from '../types/MovieDataType';
 import axios from 'axios';
 import { useState , useEffect} from 'react';
 
-import { useEffect , useState } from "react";
 
 
 
@@ -29,7 +28,7 @@ const [Movies , setMovies] = useState<moviesDataType[] | null>(null)
     description: movie.overview,
     poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
     backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-    rating: movie.vote_average,
+    rating: movie.vote_average, 
     releaseDate: movie.release_date,
     genres: movie.genre_ids,
 
