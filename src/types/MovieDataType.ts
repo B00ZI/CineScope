@@ -5,7 +5,7 @@ export interface moviesDataType {
   poster: string;
   backdrop: string;
   rating: number;
-  releaseDate: string;
+  date: string;
   language: string;
   genres: number[];
   popularity: number;

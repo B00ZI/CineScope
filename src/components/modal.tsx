@@ -4,32 +4,33 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { IoClose, IoCalendarOutline, IoTimeOutline, IoPricetag } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
-import { moviesData } from './FetchMovies';
+import { useFetch } from './FetchMovies';
 import type { moviesDataType } from '../types/MovieDataType';
 
 const Modal = () => {
- 
-  const {IsOpen , setIsOpen , MovieId} = useContext(ModalContext)!
-const modalData = moviesData.filter((x=>MovieId === x.id))[0]
-console.log(modalData)
- let css = ` ${IsOpen ? "":"hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
+  
+  const {Movies} = useFetch()
+  const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
+  const modalData = Movies?.filter((x => MovieId === x.id))[0]
+  console.log(modalData)
+  let css = ` ${IsOpen ? "" : "hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
 
   return (
-    
-    <div  onClick={()=>setIsOpen(false)} className= {css}  >
+
+    <div onClick={() => setIsOpen(false)} className={css}  >
 
 
-      <div   onClick={(e) => e.stopPropagation()}   className="linear-to-b  h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 from-gray-900/95 to-black/95 shadow-2xl backdrop-blur-md">
+      <div onClick={(e) => e.stopPropagation()} className="linear-to-b  h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 from-gray-900/95 to-black/95 shadow-2xl backdrop-blur-md">
         {/* close btn  */}
-        <button onClick={()=>setIsOpen(false)} className="cursor-pointer  sticky top-4 left-[90%] z-70 rounded-full bg-black/40 border border-black/50 p-2 transition-colors hover:bg-black/70">
+        <button onClick={() => setIsOpen(false)} className="cursor-pointer  sticky top-4 left-[90%] z-70 rounded-full bg-black/40 border border-black/50 p-2 transition-colors hover:bg-black/70">
           <IoClose size={24} className="text-white" />
         </button>
 
         {/* img */}
         <div className="relative -mt-10 h-48 overflow-hidden rounded-t-2xl sm:h-64">
           <img
-            src="https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg"
-            alt={modalData.name}
+            src={modalData?.backdrop}
+            alt={modalData?.title}
             className="h-full w-full object-cover"
           />
           <div className="absolute -inset-1 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent" />
@@ -37,23 +38,23 @@ console.log(modalData)
 
         {/* Content */}
         <div className="relative z-10 -mt-16 px-4 pb-6 sm:px-6 md:-mt-20 md:px-8 md:pb-8">
-          
+
           <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            {modalData.name}
+            {modalData?.title}
           </h2>
 
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm md:gap-4">
             <div className="flex items-center gap-1 text-yellow-400">
               <AiFillStar size={20} />
               <span className="text-base font-semibold text-white md:text-lg">
-            {modalData.rating}
-        
+                { modalData?.rating}
+
               </span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">
               <IoCalendarOutline size={16} />
-              <span>{modalData.date}</span>
+              <span>{modalData?.date}</span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">
@@ -96,11 +97,7 @@ console.log(modalData)
               Overview
             </h3>
             <p className="text-sm leading-relaxed text-white/80 md:text-base">
-              Cobb, a skilled thief who commits corporate espionage by
-              infiltrating the subconscious of his targets is offered a chance
-              to regain his old life as payment for a task considered to be
-              impossible: inception, the implantation of another person's idea
-              into a target's subconscious.
+             {modalData?.overview}
             </p>
           </div>
 

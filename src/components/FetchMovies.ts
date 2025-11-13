@@ -2,40 +2,55 @@ import type { moviesDataType } from '../types/MovieDataType';
 import type { TMDBMovie } from '../types/MovieDataType';
 
 import axios from 'axios';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 
 
+export function useFetch() {
 
-useEffect(() => {
-   FetchMovieData()
-}, []);
+  const [Movies, setMovies] = useState<moviesDataType[] | null>(null)
+  const [isLouding, setIsLouding] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
-async function FetchMovieData() {
-const [Movies , setMovies] = useState<moviesDataType[] | null>(null)
+  useEffect(() => {
 
-  const res = await axios.get(
-    `https://api.themoviedb.org/3/movie/popular?api_key=48c7cae7bad0d7bfd809b07356e38b45`,
-  );
+    async function FetchMovieData() {
+      try {
+        const res = await axios.get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=48c7cae7bad0d7bfd809b07356e38b45`,
+        );
 
-  const data = res.data.results[0];
-  console.log(data);
+        const data = res.data.results;
+        console.log(data)
+        const rawData = data.map((movie: TMDBMovie) => ({
 
-  const rawData = data.map( (movie:TMDBMovie) => ({
+          id: movie.id,
+          title: movie.title,
+          overview: movie.overview,
+          poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+          rating: Math.floor(movie.vote_average * 10 ) / 10 ,
+          date: movie.release_date .match(/\d{4}/),
+          genres: movie.genre_ids,
 
-    id: movie.id,
-    title: movie.title,
-    description: movie.overview,
-    poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-    backdrop: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-    rating: movie.vote_average, 
-    releaseDate: movie.release_date,
-    genres: movie.genre_ids,
+        }))
+        setMovies(rawData)
 
-  }));
-  setMovies(rawData)
+      } catch (err) {
+        setError("error ---")
+      } finally {
+        setIsLouding(false)
+      }
+    }
+    FetchMovieData()
+  }, []);
 
+ return {Movies , isLouding , error}
 }
+
+
+
+
 // export const moviesData: moviesDataType[] = [
 //   { id: 1, name: 'marve', rating: 8.4, date: 2020, catig: ['djfn'] },
 //   { id: 2, name: 'soko', rating: 3.3, date: 2012, catig: ['action', 'djfn'] },
