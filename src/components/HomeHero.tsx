@@ -63,7 +63,7 @@ function openModal(){
           <BiBookmark size={15} />
           <span className="">Watchlist</span>
         </button> */}
-      <WatchlistBtn/>
+      {/* <WatchlistBtn  Movie={testMovie} /> */}
       <DetailBtn/>
 
         

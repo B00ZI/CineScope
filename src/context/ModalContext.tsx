@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-import type { moviesDataType } from '../types/MovieDataType';
+
 
 interface ModalContextType {
   IsOpen: boolean,

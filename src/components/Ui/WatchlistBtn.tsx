@@ -1,16 +1,24 @@
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import { useState } from 'react';
+import { useState , useContext } from 'react';
+import { WatchlistContext } from '../../context/WatchlistContext';
+import type { moviesDataType } from '../../types/MovieDataType';
 
 
+export default function WatchlistBtn({Movie}:{Movie : moviesDataType} ) {
+  const context = useContext(WatchlistContext)
+  if (!context  ) return null
 
+  const {WatchlistMovies , ToggelWatchlist} = context
+  // const [isSaved, setIssaved] = useState(false);
+  console.log(WatchlistMovies)
 
-export default function WatchlistBtn() {
-  
-  const [isSaved, setIssaved] = useState(false);
+ const isSaved = WatchlistMovies.some(m => m.id ===  Movie.id)
 
   function saveTgl(e: any) {
-    setIssaved(!isSaved);
+  
     e.stopPropagation();
+    ToggelWatchlist(Movie)
+   
   }
 
   {

@@ -6,7 +6,7 @@ import DetailBtn from './Ui/DetailBtn';
 import WatchlistBtn from './Ui/WatchlistBtn';
 
 import type { moviesDataType } from "../types/MovieDataType";
-import { useContext } from 'react';
+import { useContext } from 'react';  
 import { ModalContext } from '../context/ModalContext';
 
 
@@ -47,7 +47,7 @@ function openModal(){
   </div>
     
   <div className="flex gap-3 relative z-10">
-    <WatchlistBtn/>
+    <WatchlistBtn Movie={movie}  />
     <DetailBtn />
   </div>
 </div>

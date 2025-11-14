@@ -6,9 +6,8 @@ export interface moviesDataType {
   backdrop: string;
   rating: number;
   date: string;
-  language: string;
   genres: number[];
-  popularity: number;
+
 }
 
 export interface TMDBMovie  {

@@ -1,8 +1,9 @@
-import {  StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter , RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import ModalContextProvider from './context/ModalContext.tsx'
+import WatchlistContextProvider from './context/WatchlistContext.tsx'
 
 
 import Home from "./pages/Home";
@@ -14,14 +15,14 @@ import Layout from './components/Layout.tsx'
 
 const router = createBrowserRouter([
   {
-    element:<Layout/>,
-    children:[
+    element: <Layout />,
+    children: [
 
-      {path: "/" , element:<Home/>},
-      {path: "/watchlist" , element:<Watchlist/>},
-      {path: "/top15" , element:<Top15/>},
-      {path: "/profile" , element:<Profile/>},
-      {path: "*" , element:<NotFound/>}
+      { path: "/", element: <Home /> },
+      { path: "/watchlist", element: <Watchlist /> },
+      { path: "/top15", element: <Top15 /> },
+      { path: "/profile", element: <Profile /> },
+      { path: "*", element: <NotFound /> }
 
     ]
   }
@@ -29,10 +30,16 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ModalContextProvider>
 
-    <RouterProvider router={router} />
+ 
+    <WatchlistContextProvider>
 
-    </ModalContextProvider>
+      <ModalContextProvider>
+        <RouterProvider router={router} />
+      </ModalContextProvider>
+
+    </WatchlistContextProvider>
+
+
   </StrictMode>,
 )
