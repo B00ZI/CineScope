@@ -1,12 +1,16 @@
 
 import HomeHero from '../components/HomeHero';
 import MovieCardRendrer from '../components/MovieCardRendrer';
-
+import { useFetch } from '../components/FetchMovies';
 
 
 
 
 export default function Home() {
+
+
+const {Movies} = useFetch()
+if (!Movies) return null
 
 
   return (
@@ -21,7 +25,7 @@ export default function Home() {
         
 
         
-        <MovieCardRendrer></MovieCardRendrer>
+        <MovieCardRendrer Movies={Movies} ></MovieCardRendrer>
     
 
         

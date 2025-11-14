@@ -1,7 +1,5 @@
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import { BsInfoCircle } from 'react-icons/bs';
-import WatchlistBtn from './Ui/WatchlistBtn';
+import { AiFillStar } from 'react-icons/ai';
+
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
