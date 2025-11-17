@@ -1,5 +1,5 @@
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
+import { AiFillStar} from 'react-icons/ai';
+import { BiSolidBookmark } from 'react-icons/bi';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
