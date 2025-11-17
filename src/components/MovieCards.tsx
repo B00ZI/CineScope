@@ -1,6 +1,5 @@
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
+import { AiFillStar } from 'react-icons/ai';
+
 
 import DetailBtn from './Ui/DetailBtn';
 import WatchlistBtn from './Ui/WatchlistBtn';
@@ -32,7 +31,7 @@ function openModal(){
     className="absolute inset-0 bg-cover bg-center transform transition-transform duration-400 group-hover:scale-110"
     style={{ backgroundImage: `url(${movie.poster})` }}
   />
-  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent rounded-2xl" />
+  <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent rounded-2xl" />
 
   <h2 className="relative z-10 text-lg font-bold md:text-xl">{movie.title}</h2>
   <div className="relative z-10 mb-3 flex items-center gap-1 text-sm">

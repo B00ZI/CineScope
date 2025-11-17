@@ -21,7 +21,7 @@ export function useFetch() {
         );
 
         const data = res.data.results;
-        console.log(data)
+        // console.log(data)
         const rawData = data.map((movie: TMDBMovie) => ({
 
           id: movie.id,
