@@ -11,16 +11,13 @@ export const RattingContext = createContext<RattingContextType | null>(null)
 
 export function RattingContextProvider({children}:{children:ReactNode}){
 
-    const [userRatting , setUserRatting] = useState({})
+    const [userRatting , setUserRatting] = useState<Record<number,number>>({});
 
 
     function Ratte(id:number , ratting:number){
        setUserRatting(prev=> ({ ...prev , [id] : ratting}))
     }
 
-    // userRatting:{
-    //     49585:4
-    // }
 
 
     return (
