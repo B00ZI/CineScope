@@ -4,7 +4,8 @@ import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
-import type { moviesDataType } from '../types/MovieDataType';
+import Ratting from './Ui/Ratting';
+
 
 const Modal = () => {
   
@@ -62,19 +63,10 @@ const Modal = () => {
             </div>
           </div>
 
-          {/* User Rating Section */}
+          {/* ratting */}
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-sm">
             <p className="mb-3 text-sm text-white/50">Your Rating</p>
-            <div className="flex gap-1">
-              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
-              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
-              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
-              <AiFillStar size={32} className="cursor-pointer  text-yellow-400" />
-              <AiOutlineStar size={32} className="text-white/30" />
-              <span className="ml-3 flex items-center text-lg font-semibold text-white">
-                4/5
-              </span>
-            </div>
+            <Ratting/>
           </div>
 
           {/* Genres */}
