@@ -1,20 +1,52 @@
-import { AiFillStar} from 'react-icons/ai';
+import { AiFillStar } from 'react-icons/ai';
 import { BiSolidBookmark } from 'react-icons/bi';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
+import { MovieDetailsContext } from '../context/MovieDetailsContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
+
+import { useDetailsFetch } from './FetchDetails';
+
 import Ratting from './Ui/Ratting';
 
 
 const Modal = () => {
-  const {Movies} = useFetch()
+
+
+
+
+
+
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
-  if (!Movies) return 
-  if (!MovieId) return 
+  const { getMovieById , saveMovieDetails  } = useContext(MovieDetailsContext)!
+
+  const { Movies } = useFetch()
+
+  const { Mdetails } = useDetailsFetch(MovieId)
+
+
+
+
+  if (!Movies) return
+  if (!MovieId) return
+
+
+  const cache = getMovieById(MovieId) 
+
+
+  const details = cache ?? Mdetails
+
+  if (!cache && Mdetails) {
+    saveMovieDetails(MovieId , Mdetails);
+}
+
+  
+  console.log(details)
+  
   const modalData = Movies.filter((x => MovieId === x.id))[0]
 
-  console.log(MovieId)
+  // console.log(MovieId)
   let css = ` ${IsOpen ? "" : "hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
 
   return (
@@ -49,7 +81,7 @@ const Modal = () => {
             <div className="flex items-center gap-1 text-yellow-400">
               <AiFillStar size={20} />
               <span className="text-base font-semibold text-white md:text-lg">
-                { modalData?.rating}
+                {modalData?.rating}
 
               </span>
             </div>
@@ -61,7 +93,7 @@ const Modal = () => {
 
             <div className="flex items-center gap-1 text-white/70">
               <IoTimeOutline size={16} />
-              <span>148 min</span>
+              <span>{details?.runTime}</span>
             </div>
           </div>
 
@@ -73,15 +105,12 @@ const Modal = () => {
 
           {/* Genres */}
           <div className="mb-6 flex flex-wrap gap-2">
-            <span className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
-              Action
+
+            {details?.genres.map((x:any , index: number) => (<span key={index}  className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
+              {x}
             </span>
-            <span className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
-              Sci-Fi
-            </span>
-            <span className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
-              Thriller
-            </span>
+            ))}
+
           </div>
 
           {/* Overview */}
@@ -90,7 +119,7 @@ const Modal = () => {
               Overview
             </h3>
             <p className="text-sm leading-relaxed text-white/80 md:text-base">
-             {modalData?.overview}
+              {modalData?.overview}
             </p>
           </div>
 
@@ -100,7 +129,7 @@ const Modal = () => {
               Director
             </h3>
             <p className="text-sm text-white/80 md:text-base">
-              Christopher Nolan
+              {details?.Director}
             </p>
           </div>
 
@@ -110,18 +139,11 @@ const Modal = () => {
               Cast
             </h3>
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
-                Leonardo DiCaprio
-              </span>
-              <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
-                Joseph Gordon-Levitt
-              </span>
-              <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
-                Ellen Page
-              </span>
-              <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
-                Tom Hardy
-              </span>
+              {details?.cast.map((x:any , index: number)  => (
+                <span key={index} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
+                  {x}
+                </span>))}
+
             </div>
           </div>
 

@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import ModalContextProvider from './context/ModalContext.tsx'
 import WatchlistContextProvider from './context/WatchlistContext.tsx'
-import { RattingContextProvider } from './context/rattingContext.tsx'
+import RattingContextProvider from './context/rattingContext.tsx'
+import MovieDetailsContextProvider from './context/MovieDetailsContext.tsx'
 
 
 import Home from "./pages/Home";
@@ -31,16 +32,18 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <MovieDetailsContextProvider>
+      <RattingContextProvider>
+        <WatchlistContextProvider>
+          <ModalContextProvider>
 
-  <RattingContextProvider>
-    <WatchlistContextProvider>
-      <ModalContextProvider>
-        
-        <RouterProvider router={router} />
-          
-      </ModalContextProvider>
-    </WatchlistContextProvider>
-</RattingContextProvider>
+            <RouterProvider router={router} />
+
+          </ModalContextProvider>
+        </WatchlistContextProvider>
+      </RattingContextProvider>
+    </MovieDetailsContextProvider>
+
 
   </StrictMode>,
 )

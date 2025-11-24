@@ -2,14 +2,12 @@
 import HomeHero from '../components/HomeHero';
 import MovieCardRendrer from '../components/MovieCardRendrer';
 import { useFetch } from '../components/FetchMovies';
-import { useDetailsFetch } from '../components/FetchDetails';
 
 
 
 
 export default function Home() {
 
-  useDetailsFetch()
 
 
 const {Movies} = useFetch()

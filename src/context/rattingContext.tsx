@@ -9,7 +9,7 @@ interface RattingContextType {
 
 export const RattingContext = createContext<RattingContextType | null>(null)
 
-export function RattingContextProvider({children}:{children:ReactNode}){
+export default function RattingContextProvider({children}:{children:ReactNode}){
 
     const [userRatting , setUserRatting] = useState<Record<number,number>>({});
 
