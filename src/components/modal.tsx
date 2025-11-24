@@ -8,7 +8,6 @@ import Ratting from './Ui/Ratting';
 
 
 const Modal = () => {
-  
   const {Movies} = useFetch()
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
   if (!Movies) return 
