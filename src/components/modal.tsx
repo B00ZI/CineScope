@@ -1,14 +1,10 @@
 import { AiFillStar } from 'react-icons/ai';
-import { BiSolidBookmark } from 'react-icons/bi';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
-import { MovieDetailsContext } from '../context/MovieDetailsContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
 import WatchlistBtn from './Ui/WatchlistBtn';
-
 import { useDetailsFetch } from './FetchDetails';
-
 import Ratting from './Ui/Ratting';
 
 
@@ -20,19 +16,13 @@ const Modal = () => {
 
 
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
-  const { getMovieById } = useContext(MovieDetailsContext)!
-
-
   const { Movies } = useFetch()
-  const details = getMovieById(MovieId) 
-  
+  const { Mdetails } = useDetailsFetch(MovieId)
 
+  if (!Movies) return null
+  if (!MovieId) return null
 
-  if (!Movies) return
-  if (!MovieId) return
-
-
-
+  const details = Mdetails
 
   
   console.log(details)

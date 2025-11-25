@@ -1,13 +1,30 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { MovieDetailsContext } from '../context/MovieDetailsContext';
 
-export function useDetailsFetch(id : number | null) {
-  
-  const [Mdetails, setMdetails] = useState<any>();
-  const [Loding, setLoding] = useState(true);
+export function useDetailsFetch(id: number | null) {
+  const { getMovieById, saveMovieDetails } = useContext(MovieDetailsContext)!;
+
+  const [Mdetails, setMdetails] = useState<any>(undefined);
+  const [Loding, setLoding] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
+
+
+    if (id === null) {
+      setMdetails(undefined);
+      setLoding(false);
+      setError(null);
+      return;
+    }
+
+    const cache = getMovieById(id);
+    if (cache) {
+      setMdetails(cache)
+      setLoding(false);
+      return;
+    }
     async function fetchMoviedetail() {
       try {
         setLoding(true);
@@ -17,24 +34,25 @@ export function useDetailsFetch(id : number | null) {
         const data = res.data;
         // console.log(data)
         const formated = {
-
-          movieId : data.id ,
-          title : data.title ,
-          genres : data.genres.map((x:any) => x.name) ,
-          runTime: data.runtime + " min",
-          Director: data.credits.crew.find((c:any) => c.job === 'Director').name,
-          cast: data.credits.cast.slice(0, 5).map((x:any) => x.name),
+          movieId: data.id,
+          title: data.title,
+          genres: data.genres.map((x: any) => x.name),
+          runTime: data.runtime + ' min',
+          Director: data.credits.crew.find((c: any) => c.job === 'Director')
+            .name,
+          cast: data.credits.cast.slice(0, 5).map((x: any) => x.name),
         };
         // console.log(formated)
-        setMdetails(formated)
+        saveMovieDetails(id, formated);
+        setMdetails(formated);
       } catch (err) {
-        setError("faled to load movie detailes");
-      } finally{
-        setLoding(false)
+        setError('faled to load movie detailes');
+      } finally {
+        setLoding(false);
       }
     }
 
     fetchMoviedetail();
-  }, [id]);
-  return {Mdetails , Loding , error}
+  }, [id,getMovieById , saveMovieDetails]);
+  return { Mdetails, Loding, error };
 }
