@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 interface CacheContextType {
-  getMovieById: (id: number) => any | undefined; // getter returns movie or undefined
+  getMovieById: (id: number ) => any | undefined; // getter returns movie or undefined
   saveMovieDetails: (id: number, details: any) => void;
 }
 

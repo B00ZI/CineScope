@@ -43,7 +43,7 @@ export function useDetailsFetch(id: number | null) {
           cast: data.credits.cast.slice(0, 5).map((x: any) => x.name),
         };
         // console.log(formated)
-        saveMovieDetails(id, formated);
+        saveMovieDetails(id!, formated);
         setMdetails(formated);
       } catch (err) {
         setError('faled to load movie detailes');
