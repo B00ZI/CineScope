@@ -5,6 +5,7 @@ import { ModalContext } from '../context/ModalContext';
 import { MovieDetailsContext } from '../context/MovieDetailsContext';
 import { useContext } from 'react';
 import { useFetch } from './FetchMovies';
+import WatchlistBtn from './Ui/WatchlistBtn';
 
 import { useDetailsFetch } from './FetchDetails';
 
@@ -19,27 +20,19 @@ const Modal = () => {
 
 
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
-  const { getMovieById , saveMovieDetails  } = useContext(MovieDetailsContext)!
+  const { getMovieById } = useContext(MovieDetailsContext)!
+
 
   const { Movies } = useFetch()
-
-  const { Mdetails } = useDetailsFetch(MovieId)
-
-
+  const details = getMovieById(MovieId) 
+  
 
 
   if (!Movies) return
   if (!MovieId) return
 
 
-  const cache = getMovieById(MovieId) 
 
-
-  const details = cache ?? Mdetails
-
-  if (!cache && Mdetails) {
-    saveMovieDetails(MovieId , Mdetails);
-}
 
   
   console.log(details)
@@ -148,11 +141,12 @@ const Modal = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <button className="cursor-pointer flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
-              <BiSolidBookmark size={20} />
+          <div className="flex flex-col sm:flex-row">
+            {/* <button className="cursor-pointer flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
               In Watchlist
-            </button>
+            </button> */}
+              <WatchlistBtn Movie={modalData} />
+
           </div>
         </div>
       </div>
