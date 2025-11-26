@@ -4,12 +4,14 @@ import Navbar from './Navbar';
 import Modal  from '../components/modal';
 import { useContext } from 'react';
 import { ModalContext } from '../context/ModalContext';
+import { useFetch } from './FetchMovies';
 
 
 export default function Layout() {
 
-  const {IsOpen}= useContext(ModalContext)!
-
+  const { Movies } = useFetch()
+  const {IsOpen , MovieId}= useContext(ModalContext)!
+  const modalData = Movies?.filter((x => MovieId === x.id))[0]
 
   return (
     <div className="flex  min-h-screen flex-col bg-black/90">
@@ -18,7 +20,7 @@ export default function Layout() {
      
         <Outlet/>
 
-       {IsOpen && <Modal />}
+       {IsOpen && <Modal modalData={modalData!} />}
 
         
   

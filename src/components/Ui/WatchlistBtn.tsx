@@ -1,5 +1,5 @@
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import { useState , useContext } from 'react';
+import {  useContext } from 'react';
 import { WatchlistContext } from '../../context/WatchlistContext';
 import type { moviesDataType } from '../../types/MovieDataType';
 

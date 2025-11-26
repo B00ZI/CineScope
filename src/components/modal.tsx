@@ -2,13 +2,13 @@ import { AiFillStar } from 'react-icons/ai';
 import { IoClose, IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
-import { useFetch } from './FetchMovies';
 import WatchlistBtn from './Ui/WatchlistBtn';
 import { useDetailsFetch } from './FetchDetails';
 import Ratting from './Ui/Ratting';
+import type { moviesDataType } from '../types/MovieDataType';
 
 
-const Modal = () => {
+const Modal = ({ modalData }: { modalData: moviesDataType }) => {
 
 
 
@@ -16,18 +16,15 @@ const Modal = () => {
 
 
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
-  const { Movies } = useFetch()
   const { Mdetails } = useDetailsFetch(MovieId)
 
-  if (!Movies) return null
-  if (!MovieId) return null
-
   const details = Mdetails
+  
+  if (!MovieId) return
 
-  
   console.log(details)
-  
-  const modalData = Movies.filter((x => MovieId === x.id))[0]
+
+
 
   // console.log(MovieId)
   let css = ` ${IsOpen ? "" : "hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
@@ -89,7 +86,7 @@ const Modal = () => {
           {/* Genres */}
           <div className="mb-6 flex flex-wrap gap-2">
 
-            {details?.genres.map((x:any , index: number) => (<span key={index}  className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
+            {details?.genres.map((x: any, index: number) => (<span key={index} className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
               {x}
             </span>
             ))}
@@ -122,7 +119,7 @@ const Modal = () => {
               Cast
             </h3>
             <div className="flex flex-wrap gap-2">
-              {details?.cast.map((x:any , index: number)  => (
+              {details?.cast.map((x: any, index: number) => (
                 <span key={index} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
                   {x}
                 </span>))}
@@ -135,7 +132,7 @@ const Modal = () => {
             {/* <button className="cursor-pointer flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
               In Watchlist
             </button> */}
-              <WatchlistBtn Movie={modalData} />
+            <WatchlistBtn Movie={modalData} />
 
           </div>
         </div>
