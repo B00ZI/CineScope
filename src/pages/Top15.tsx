@@ -16,7 +16,7 @@ const retedKeys = Object.keys(userRatting).map(Number).sort((a, b) => {
 
 const ratedMovies = retedKeys.map(ratedId =>{
   return Movies?.find(movie => movie.id === ratedId)
-})
+}).filter(Boolean)
 
 // const ratedMovies = Movies?.filter(x =>( retedKeys.includes(x.id)))
   
@@ -33,9 +33,10 @@ console.log(ratedMovies)
         Your Top 15
       </h1>
       <div className='flex flex-col gap-6'>
-        <Top15Cards></Top15Cards>
-        <Top15Cards></Top15Cards>
-        <Top15Cards></Top15Cards>
+        {ratedMovies.map( (movie , index) =>( 
+           <Top15Cards movie={movie!} index={index} key={index}  ></Top15Cards>
+        ) )}
+       
 
       </div>
 
