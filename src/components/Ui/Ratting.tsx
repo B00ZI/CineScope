@@ -13,7 +13,7 @@ export default function Ratting({id}:{id:number }) {
   
   const starlist = [1,2,3,4,5]
 
-
+  console.log (userRatting)
 
 
 
