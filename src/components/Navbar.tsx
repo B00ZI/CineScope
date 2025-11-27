@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { TbMenu4 } from 'react-icons/tb';
 import { HiX } from 'react-icons/hi';
@@ -6,9 +6,33 @@ import { useContext } from 'react';
 import { SerchContext } from '../context/SerchContext';
 export default function Navbar() {
 
- 
-  const fetchData = useContext(SerchContext)!
- fetchData()
+
+  const { fetchData, serchResulte } = useContext(SerchContext)!
+  const [InputValue, setInputValue] = useState<string>("")
+
+  let timerID = useRef<number | null>(null)
+
+  function inputHandel(e) {
+
+
+    if (timerID.current) {
+      clearTimeout(timerID.current)
+    }
+
+    timerID.current = setTimeout(() => {
+      setInputValue(e.target.value)
+    }, 4000)
+
+  }
+
+
+  useEffect(() => {
+
+    if (InputValue.trim() === "") return
+    fetchData(InputValue)
+  }, [InputValue])
+
+  console.log("0000", serchResulte.serchdata)
   const [isOpen, setIsOpen] = useState(false);
 
   const mobileMenu = () => setIsOpen(!isOpen);
@@ -32,6 +56,8 @@ export default function Navbar() {
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
             placeholder="@ Search"
+            onChange={inputHandel}
+
           />
         </div>
 
