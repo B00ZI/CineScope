@@ -22,7 +22,7 @@ const Modal = ({ modalData }: { modalData: moviesDataType }) => {
   
   if (!MovieId) return
 
-  // console.log(details)
+  console.log("----" ,  modalData)
 
 
 

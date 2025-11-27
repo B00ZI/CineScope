@@ -4,16 +4,19 @@ import { TbMenu4 } from 'react-icons/tb';
 import { HiX } from 'react-icons/hi';
 import { useContext } from 'react';
 import { SerchContext } from '../context/SerchContext';
+import { useNavigate } from 'react-router-dom';
+
+
+
 export default function Navbar() {
 
-
+  const navigate = useNavigate()
   const { fetchData, serchResulte } = useContext(SerchContext)!
   const [InputValue, setInputValue] = useState<string>("")
 
   let timerID = useRef<number | null>(null)
 
-  function inputHandel(e) {
-
+  function inputHandel(e: any) {
 
     if (timerID.current) {
       clearTimeout(timerID.current)
@@ -21,7 +24,7 @@ export default function Navbar() {
 
     timerID.current = setTimeout(() => {
       setInputValue(e.target.value)
-    }, 4000)
+    }, 1300)
 
   }
 
@@ -31,8 +34,21 @@ export default function Navbar() {
     if (InputValue.trim() === "") return
     fetchData(InputValue)
   }, [InputValue])
+   
+
+ useEffect(()=>{
+  
+  if (serchResulte && serchResulte.serchdata && serchResulte.serchdata.length > 0 ){
+   navigate( '/serchResults' )
+  }
+
+ },[InputValue])
+
+
+  
 
   console.log("0000", serchResulte.serchdata)
+
   const [isOpen, setIsOpen] = useState(false);
 
   const mobileMenu = () => setIsOpen(!isOpen);
@@ -44,11 +60,11 @@ export default function Navbar() {
   };
 
   return (
-    <div className=" sticky  top-0 left-0 z-10 border-b border-white/20 bg-black/70 px-4 py-2 md:px-12">
+    <div className=" sticky  top-0 left-0 z-50 border-b border-white/20 bg-black/70 px-4 py-2 md:px-12">
       {/* Desktop Layout */}
       <div className="hidden items-center justify-between gap-8 md:flex">
         {/* Logo - Left */}
-        <h2 className="flex-shrink-0 text-xl font-semibold">CineScope</h2>
+        <h2 className="shrink-0 text-xl font-semibold">CineScope</h2>
 
         {/* Search Bar - Center */}
         <div className="max-w-xl flex-1">
@@ -62,7 +78,7 @@ export default function Navbar() {
         </div>
 
         {/* Nav Links - Right */}
-        <nav className="flex flex-shrink-0 gap-6 text-sm font-semibold">
+        <nav className="flex shrink-0 gap-6 text-sm font-semibold">
           <NavLink className={handleActive} to="/">
             Home
           </NavLink>

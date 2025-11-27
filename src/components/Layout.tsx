@@ -5,13 +5,18 @@ import Modal  from '../components/modal';
 import { useContext } from 'react';
 import { ModalContext } from '../context/ModalContext';
 import { useFetch } from './FetchMovies';
-
+import { SerchContext } from '../context/SerchContext';
 
 export default function Layout() {
+  
 
   const { Movies } = useFetch()
   const {IsOpen , MovieId}= useContext(ModalContext)!
-  const modalData = Movies?.filter((x => MovieId === x.id))[0]
+  const {serchResulte} = useContext(SerchContext)!
+
+  const combainedArray = [...(Movies ?? []) , ...(serchResulte.serchdata ?? []) ]
+
+  const modalData = combainedArray?.filter((x => MovieId === x.id))[0]
 
   return (
     <div className="flex  min-h-screen flex-col bg-black/90">
