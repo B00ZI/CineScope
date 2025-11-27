@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { TbMenu4 } from 'react-icons/tb';
 import { HiX } from 'react-icons/hi';
-
+import { useContext } from 'react';
+import { SerchContext } from '../context/SerchContext';
 export default function Navbar() {
+
+ 
+  const fetchData = useContext(SerchContext)!
+ fetchData()
   const [isOpen, setIsOpen] = useState(false);
 
   const mobileMenu = () => setIsOpen(!isOpen);

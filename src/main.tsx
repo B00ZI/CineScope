@@ -6,6 +6,7 @@ import ModalContextProvider from './context/ModalContext.tsx'
 import WatchlistContextProvider from './context/WatchlistContext.tsx'
 import RattingContextProvider from './context/rattingContext.tsx'
 import MovieDetailsContextProvider from './context/MovieDetailsContext.tsx'
+import SerchContextPreovider from './context/SerchContext.tsx'
 
 
 import Home from "./pages/Home";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <SerchContextPreovider>
     <MovieDetailsContextProvider>
       <RattingContextProvider>
         <WatchlistContextProvider>
@@ -43,7 +45,7 @@ createRoot(document.getElementById('root')!).render(
         </WatchlistContextProvider>
       </RattingContextProvider>
     </MovieDetailsContextProvider>
-
+</SerchContextPreovider>
 
   </StrictMode>,
 )
