@@ -113,6 +113,9 @@ export default function Navbar() {
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
             placeholder="@ Search"
+            value = {InputValue}
+            onChange={inputHandel}
+
           />
         </div>
       </div>
