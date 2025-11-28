@@ -6,6 +6,9 @@ import type { moviesDataType } from "../../types/MovieDataType"
 export default function RatingDisplay({movie}:{movie :moviesDataType }) {
 
 
+
+
+
      const { userRatting } = useContext(RattingContext)!
 
     const userRate = userRatting[movie.id]

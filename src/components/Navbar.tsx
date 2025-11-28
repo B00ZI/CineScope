@@ -46,7 +46,7 @@ export default function Navbar() {
   const prevPath = useRef(location.pathname);
 
   useEffect(() => {
-    if (prevPath.current !== "/" && location.pathname === "/") {
+    if (prevPath.current === "/serchResults" && location.pathname !== "/serchResults") {
       setInputValue("");
     }
     prevPath.current = location.pathname;
