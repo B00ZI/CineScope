@@ -5,11 +5,10 @@ import { HiX } from 'react-icons/hi';
 import { useContext } from 'react';
 import { SerchContext } from '../context/SerchContext';
 import { useNavigate } from 'react-router-dom';
-
-
+import { useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-
+  const location = useLocation()
   const navigate = useNavigate()
   const { fetchData, serchResulte } = useContext(SerchContext)!
   const [InputValue, setInputValue] = useState<string>("")
@@ -17,37 +16,42 @@ export default function Navbar() {
   let timerID = useRef<number | null>(null)
 
   function inputHandel(e: any) {
+    const value = e.target.value
+    setInputValue(value)
+    if (timerID.current) clearTimeout(timerID.current)
 
-    if (timerID.current) {
-      clearTimeout(timerID.current)
-    }
-
+    if (value.trim() === "") return
+    
     timerID.current = setTimeout(() => {
-      setInputValue(e.target.value)
-    }, 1300)
+         
+        fetchData(value)
+
+      
+        
+
+    }, 600)
 
   }
 
-
+  //navigate only if fetch hapend even if empty 
   useEffect(() => {
 
-    if (InputValue.trim() === "") return
-    fetchData(InputValue)
-  }, [InputValue])
-   
+    if (serchResulte && serchResulte.serchdata) {
+      navigate('/serchResults')
+    }
 
- useEffect(()=>{
-  
-  if (serchResulte && serchResulte.serchdata && serchResulte.serchdata.length > 0 ){
-   navigate( '/serchResults' )
-  }
+  }, [serchResulte.serchdata])
 
- },[InputValue])
+  //clens serch bar if user navigitesd out of serch bar 
+  const prevPath = useRef(location.pathname);
 
+  useEffect(() => {
+    if (prevPath.current !== "/" && location.pathname === "/") {
+      setInputValue("");
+    }
+    prevPath.current = location.pathname;
+  }, [location.pathname]);
 
-  
-
-  console.log("0000", serchResulte.serchdata)
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,6 +76,7 @@ export default function Navbar() {
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
             placeholder="@ Search"
+            value={InputValue}
             onChange={inputHandel}
 
           />
@@ -101,6 +106,7 @@ export default function Navbar() {
             {isOpen ? <HiX size={24} /> : <TbMenu4 size={24} />}
           </button>
         </div>
+          {/* mobile sercgbar */}
 
         <div className="mt-3">
           <input

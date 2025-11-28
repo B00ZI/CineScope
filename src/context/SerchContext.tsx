@@ -41,6 +41,8 @@ export default function SerchContextPreovider({ children }: { children: ReactNod
     
             }))
               setSerchdata(rawData)
+              console.log("fetc hapen ", rawData)
+
         }catch(err){
          setError("error fetching")
         }finally{
@@ -53,7 +55,7 @@ export default function SerchContextPreovider({ children }: { children: ReactNod
             Louding ,
             Error
         }
-   
+    
 
     return (
 
