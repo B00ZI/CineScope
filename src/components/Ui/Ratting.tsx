@@ -36,5 +36,3 @@ export default function Ratting({id}:{id:number }) {
   )
 }
 
-/* <AiFillStar size={32} className="cursor-pointer  text-yellow-400" /> */
-/* <AiOutlineStar size={32} className="text-white/30" /> */
