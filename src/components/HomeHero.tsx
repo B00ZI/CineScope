@@ -27,7 +27,7 @@ function openModal(){
     className="absolute inset-0 bg-cover bg-center transform transition-transform duration-400 group-hover:scale-110"
     style={{ backgroundImage: `url(${testMovie?.backdrop})` }}
   />
-  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent rounded-2xl" />
+  <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent rounded-2xl" />
 
       <p className="z-10 rounded-xl mb-4 border border-white/10 bg-white/7 px-3 py-1 text-[10px]">
         Trending Now

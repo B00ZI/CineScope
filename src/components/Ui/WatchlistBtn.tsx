@@ -9,8 +9,7 @@ export default function WatchlistBtn({Movie}:{Movie : moviesDataType} ) {
   if (!context  ) return null
 
   const {WatchlistMovies , ToggelWatchlist} = context
-  // const [isSaved, setIssaved] = useState(false);
-  // console.log(WatchlistMovies)
+
 
  const isSaved = WatchlistMovies.some(m => m.id ===  Movie.id)
 

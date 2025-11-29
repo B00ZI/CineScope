@@ -1,10 +1,7 @@
 import { AiFillStar } from 'react-icons/ai';
-// import { FaHeart, FaRegHeart } from 'react-icons/fa';
-// import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-// import { BsInfoCircle } from 'react-icons/bs';
+
 import { useContext } from 'react';
 import type { moviesDataType } from '../types/MovieDataType';
-// import Modal from './modal';
 import { ModalContext } from '../context/ModalContext';
 import RatingDisplay from './Ui/ratingDisplay';
 import { useDetailsFetch } from './FetchDetails';

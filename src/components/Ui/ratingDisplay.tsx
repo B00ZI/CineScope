@@ -27,7 +27,3 @@ export default function RatingDisplay({movie}:{movie :moviesDataType }) {
         </>
     )
 }
-/* <AiFillStar size={18} className="text-yellow-500 sm:w-5 sm:h-5" />
-     <AiFillStar size={18} className="text-yellow-400 sm:w-5 sm:h-5" />
-     <AiFillStar size={18} className="text-yellow-400 sm:w-5 sm:h-5" />
-     <AiOutlineStar size={18} className="text-white/30 sm:w-5 sm:h-5" /> */

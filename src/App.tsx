@@ -8,12 +8,7 @@
 function App() {
   return (
     <>
-      {/* <Navbar></Navbar>
-      <Home></Home>
-      <Profile></Profile>
-      <NotFound></NotFound>
-      <Top15></Top15>
-      <Watchlist></Watchlist> */}
+
     </>
   );
 }
