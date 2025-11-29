@@ -16,7 +16,6 @@ export default function SerchContextPreovider({ children }: { children: ReactNod
     const [Louding , setLouding] = useState(false)
     const [Error , setError] = useState<null | string>(null)
 
-    // const movieQuery = "the end";
     const apiKey = "48c7cae7bad0d7bfd809b07356e38b45";
 
 
