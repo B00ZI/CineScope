@@ -7,6 +7,8 @@ export interface moviesDataType {
   rating: number;
   date: string;
   genres: number[];
+  UserRate?: number;
+
 
 }
 
