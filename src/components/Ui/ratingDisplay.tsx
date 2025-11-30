@@ -1,17 +1,19 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
-import { useContext  } from "react"
-import { RattingContext } from "../../context/rattingContext"
 import type { moviesDataType } from "../../types/MovieDataType"
 
-export default function RatingDisplay({movie}:{movie :moviesDataType }) {
+
+
+
+
+export default function RatingDisplay({movie}:{movie: moviesDataType}) {
 
 
 
 
 
-     const { userRatting } = useContext(RattingContext)!
+   
 
-    const userRate = userRatting[movie.id]
+    const userRate = movie.UserRate || 0
     const nums = [1, 2, 3, 4, 5]
 
     return (
