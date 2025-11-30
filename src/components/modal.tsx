@@ -43,8 +43,8 @@ const Modal = ({ modalData }: { modalData: moviesDataType }) => {
         {/* img */}
         <div className="relative -mt-10 h-48 overflow-hidden rounded-t-2xl sm:h-64">
           <img
-            src={modalData.backdrop}
-            alt={modalData.title}
+            src={modalData?.backdrop}
+            alt={modalData?.title}
             className="h-full w-full object-cover"
           />
           <div className="absolute -inset-1 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent" />
@@ -54,7 +54,7 @@ const Modal = ({ modalData }: { modalData: moviesDataType }) => {
         <div className="relative z-10 -mt-16 px-4 pb-6 sm:px-6 md:-mt-20 md:px-8 md:pb-8">
 
           <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            {modalData.title}
+            {modalData?.title}
           </h2>
 
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm md:gap-4">
@@ -80,7 +80,7 @@ const Modal = ({ modalData }: { modalData: moviesDataType }) => {
           {/* ratting */}
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-sm">
             <p className="mb-3 text-sm text-white/50">Your Rating</p>
-            <Ratting id={MovieId} />
+            <Ratting movie={modalData} />
           </div>
 
           {/* Genres */}
