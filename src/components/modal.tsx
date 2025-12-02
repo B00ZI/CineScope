@@ -7,77 +7,81 @@ import { useDetailsFetch } from './FetchDetails';
 import Ratting from './Ui/Ratting';
 import type { moviesDataType } from '../types/MovieDataType';
 
+const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
 
-const Modal = ({ modalData }: { modalData: moviesDataType }) => {
-
-
-
-
-
-
-  const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!
-  const { Mdetails } = useDetailsFetch(MovieId)
-
-  const details = Mdetails
+  const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!;
   
-  if (!MovieId) return
+  // Only fetch details if we actually have an ID
+  const { Mdetails } = useDetailsFetch(MovieId);
+  const details = Mdetails;
 
-  console.log("----" ,  modalData)
-
-
-
-  // console.log(MovieId)
-  let css = ` ${IsOpen ? "" : "hidden"} fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm `
+  // 1. PERFORMANCE FIX:
+  // If the modal is closed or we have no data, DO NOT RENDER ANYTHING.
+  if (!IsOpen || !modalData) return null;
 
   return (
+    <div 
+      // Click outside to close
+      onClick={() => setIsOpen(false)} 
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm"
+    >
+      <div 
+   
+        onClick={(e) => e.stopPropagation()} 
+        className="bg-linear-to-b from-gray-900/95 to-black/95 h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 shadow-2xl backdrop-blur-md relative"
+      >
+        
 
-    <div onClick={() => setIsOpen(false)} className={css}  >
-
-
-      <div onClick={(e) => e.stopPropagation()} className="linear-to-b  h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 from-gray-900/95 to-black/95 shadow-2xl backdrop-blur-md">
-        {/* close btn  */}
-        <button onClick={() => setIsOpen(false)} className="cursor-pointer  sticky top-4 left-[90%] z-70 rounded-full bg-black/40 border border-black/50 p-2 transition-colors hover:bg-black/70">
+        <button 
+          onClick={() => setIsOpen(false)} 
+          className="absolute top-4 right-4 z-50 rounded-full bg-black/40 border border-white/10 p-2 transition-colors hover:bg-white/20"
+        >
           <IoClose size={24} className="text-white" />
         </button>
 
-        {/* img */}
-        <div className="relative -mt-10 h-48 overflow-hidden rounded-t-2xl sm:h-64">
-          <img
-            src={modalData?.backdrop}
-            alt={modalData?.title}
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute -inset-1 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent" />
+        {/* Image Section */}
+        <div className="relative h-48 sm:h-64 w-full">
+           {/* Safety check for image */}
+           {modalData.backdrop ? (
+             <img
+               src={modalData.backdrop}
+               alt={modalData.title}
+               className="h-full w-full object-cover"
+             />
+           ) : (
+             <div className="h-full w-full bg-gray-800 flex items-center justify-center text-white/20">No Image</div>
+           )}
+          <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 -mt-16 px-4 pb-6 sm:px-6 md:-mt-20 md:px-8 md:pb-8">
-
-          <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            {modalData?.title}
+        {/* Content Section */}
+        <div className="relative z-10 px-4 pb-6 sm:px-6 md:px-8 md:pb-8 -mt-12">
+          
+          <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl drop-shadow-lg">
+            {modalData.title}
           </h2>
 
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm md:gap-4">
             <div className="flex items-center gap-1 text-yellow-400">
               <AiFillStar size={20} />
               <span className="text-base font-semibold text-white md:text-lg">
-                {modalData?.rating}
-
+                {modalData.rating}
               </span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">
               <IoCalendarOutline size={16} />
-              <span>{modalData?.date}</span>
+              <span>{modalData.date}</span>
             </div>
 
             <div className="flex items-center gap-1 text-white/70">
               <IoTimeOutline size={16} />
-              <span>{details?.runTime}</span>
+              {/* Optional chaining prevents crash if details aren't loaded yet */}
+              <span>{details?.runTime ? details.runTime : '...'}</span>
             </div>
           </div>
 
-          {/* ratting */}
+          {/* Rating Component */}
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-sm">
             <p className="mb-3 text-sm text-white/50">Your Rating</p>
             <Ratting movie={modalData} />
@@ -85,55 +89,44 @@ const Modal = ({ modalData }: { modalData: moviesDataType }) => {
 
           {/* Genres */}
           <div className="mb-6 flex flex-wrap gap-2">
-
-            {details?.genres.map((x: any, index: number) => (<span key={index} className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm backdrop-blur-sm">
-              {x}
-            </span>
+            {details?.genres?.map((genre: string, index: number) => (
+              <span key={index} className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-white/90 shadow-sm">
+                {genre}
+              </span>
             ))}
-
           </div>
 
           {/* Overview */}
           <div className="mb-6">
-            <h3 className="mb-3 text-lg font-semibold text-white md:text-xl">
-              Overview
-            </h3>
+            <h3 className="mb-3 text-lg font-semibold text-white md:text-xl">Overview</h3>
             <p className="text-sm leading-relaxed text-white/80 md:text-base">
-              {modalData?.overview}
+              {modalData.overview}
             </p>
           </div>
 
           {/* Director */}
           <div className="mb-6">
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Director
-            </h3>
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">Director</h3>
             <p className="text-sm text-white/80 md:text-base">
-              {details?.Director}
+              {details?.Director || 'Loading...'}
             </p>
           </div>
 
           {/* Cast */}
           <div className="mb-6">
-            <h3 className="mb-3 text-lg font-semibold text-white md:text-xl">
-              Cast
-            </h3>
+            <h3 className="mb-3 text-lg font-semibold text-white md:text-xl">Cast</h3>
             <div className="flex flex-wrap gap-2">
-              {details?.cast.map((x: any, index: number) => (
-                <span key={index} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80 shadow-sm backdrop-blur-sm">
-                  {x}
-                </span>))}
-
+              {details?.cast?.map((actor: string, index: number) => (
+                <span key={index} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80">
+                  {actor}
+                </span>
+              )) || 'Loading...'}
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row">
-            {/* <button className="cursor-pointer flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-blue-600">
-              In Watchlist
-            </button> */}
+          <div className="flex flex-col sm:flex-row pt-4">
             <WatchlistBtn Movie={modalData} />
-
           </div>
         </div>
       </div>

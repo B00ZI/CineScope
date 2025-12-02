@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 interface WatchlistContextType {
 
     WatchlistMovies: moviesDataType[],
-    ToggelWatchlist: (Movie: moviesDataType) => void
+    ToggleWatchlist: (Movie: moviesDataType) => void
 }
 
 
@@ -19,7 +19,7 @@ export default function WatchlistContextProvider({ children }: childrenType) {
 
     const [WatchlistMovies, setWatchlistMovies] = useState<moviesDataType[]>([])
 
-    const ToggelWatchlist = (Movie: moviesDataType) => {
+    const ToggleWatchlist = (Movie: moviesDataType) => {
         if (WatchlistMovies.some(m => m.id === Movie.id)) {
             setWatchlistMovies((prev) => prev.filter(m => m.id !== Movie.id))
         } else {
@@ -28,7 +28,7 @@ export default function WatchlistContextProvider({ children }: childrenType) {
     }
 
     return (
-        < WatchlistContext.Provider value={{ WatchlistMovies, ToggelWatchlist }}>
+        < WatchlistContext.Provider value={{ WatchlistMovies, ToggleWatchlist }}>
             {children}
         </WatchlistContext.Provider>
     )

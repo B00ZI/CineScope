@@ -1,23 +1,23 @@
 import { BiBookmark, BiSolidBookmark } from 'react-icons/bi';
-import {  useContext } from 'react';
+import { useContext } from 'react';
 import { WatchlistContext } from '../../context/WatchlistContext';
 import type { moviesDataType } from '../../types/MovieDataType';
 
 
-export default function WatchlistBtn({Movie}:{Movie : moviesDataType} ) {
+export default function WatchlistBtn({ Movie }: { Movie: moviesDataType }) {
   const context = useContext(WatchlistContext)
-  if (!context  ) return null
+  if (!context) return null
 
-  const {WatchlistMovies , ToggelWatchlist} = context
+  const { WatchlistMovies, ToggleWatchlist } = context
 
 
- const isSaved = WatchlistMovies.some(m => m.id ===  Movie.id)
+  const isSaved = WatchlistMovies.some(m => m.id === Movie.id)
 
   function saveTgl(e: any) {
-  
+
     e.stopPropagation();
-    ToggelWatchlist(Movie)
-   
+    ToggleWatchlist(Movie)
+
   }
 
   {

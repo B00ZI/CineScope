@@ -6,7 +6,7 @@ export interface moviesDataType {
   backdrop: string;
   rating: number;
   date: string;
-  genres: number[];
+  
   UserRate?: number;
 
 
@@ -23,3 +23,11 @@ export interface TMDBMovie  {
   genre_ids: number[];
 };
 
+export interface FormattedMovieDetails {
+  movieId: number;
+  title: string;
+  genres: string[];
+  runTime: string;
+  Director: string;
+  cast: string[];
+}

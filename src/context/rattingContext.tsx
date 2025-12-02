@@ -2,21 +2,8 @@ import { createContext, useState } from "react";
 import type { ReactNode } from "react";
 import type { moviesDataType } from "../types/MovieDataType";
 
-
-interface formated {
-    UserRate: number;
-    id: number;
-    title: string;
-    overview: string;
-    poster: string;
-    backdrop: string;
-    rating: number;
-    date: string;
-    genres: number[];
-}
-
 interface RattingContextType {
-    userRatting: formated[],
+    userRatting: moviesDataType[],
     Ratte: (movie: moviesDataType, ratting: number) => void
 }
 
@@ -25,7 +12,7 @@ export const RattingContext = createContext<RattingContextType | null>(null)
 
 export default function RattingContextProvider({ children }: { children: ReactNode }) {
 
-    const [userRatting, setUserRatting] = useState<formated[]>([]);
+    const [userRatting, setUserRatting] = useState<moviesDataType[]>([]);
 
 
     function Ratte(movie: moviesDataType, ratting: number) {
