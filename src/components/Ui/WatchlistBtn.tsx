@@ -13,14 +13,14 @@ export default function WatchlistBtn({ Movie }: { Movie: moviesDataType }) {
 
   const isSaved = WatchlistMovies.some(m => m.id === Movie.id)
 
-  function saveTgl(e: any) {
+  function saveTgl(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 
     e.stopPropagation();
     ToggleWatchlist(Movie)
 
   }
 
-  {
+  
     return (
       <button
         onClick={(e) => saveTgl(e)}
@@ -35,5 +35,5 @@ export default function WatchlistBtn({ Movie }: { Movie: moviesDataType }) {
         </span>
       </button>
     );
-  }
+  
 }

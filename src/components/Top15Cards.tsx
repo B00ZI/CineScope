@@ -4,12 +4,13 @@ import { useContext } from 'react';
 import type { moviesDataType } from '../types/MovieDataType';
 import { ModalContext } from '../context/ModalContext';
 import RatingDisplay from './Ui/ratingDisplay';
-import { useDetailsFetch } from './FetchDetails';
+// import { useDetailsFetch } from './FetchDetails';
 
 const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) => {
-
-  const { Mdetails } = useDetailsFetch(movie.id)
-  console.log(Mdetails, " --------")
+ 
+  //iremoved the mdetalesw and the gens becous tat coses 15 fetch per loud wich is a nono 
+  // const { Mdetails } = useDetailsFetch(movie.id)
+  // console.log(Mdetails, " --------")
   const { setIsOpen , setMovieId} = useContext(ModalContext)!
   function modleHandler(){
     setIsOpen(true)
@@ -57,7 +58,7 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
             <b>{movie.rating}</b> • {movie.date}
           </span>
         </div>
-
+{/* 
         <div className="flex flex-wrap gap-1 text-[10px] sm:text-[11px] font-semibold md:gap-2">
 
           {Mdetails?.genres?.slice(0, 3)
@@ -66,7 +67,7 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
                   {gen}
                 </p>
               })}
-        </div>
+        </div> */}
       </div>
 
       {/* Rating Section */}

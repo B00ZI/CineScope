@@ -13,21 +13,22 @@ export default function Navbar() {
   const { fetchData, serchResulte } = useContext(SerchContext)!
   const [InputValue, setInputValue] = useState<string>("")
 
-  let timerID = useRef<number | null>(null)
+  let timerID = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  function inputHandel(e: any) {
+  function inputHandel(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
+
     setInputValue(value)
     if (timerID.current) clearTimeout(timerID.current)
 
     if (value.trim() === "") return
-    
-    timerID.current = setTimeout(() => {
-         
-        fetchData(value)
 
-      
-        
+    timerID.current = setTimeout(() => {
+
+      fetchData(value)
+
+
+
 
     }, 600)
 
@@ -37,6 +38,7 @@ export default function Navbar() {
   useEffect(() => {
 
     if (serchResulte && serchResulte.serchdata) {
+      if ( location.pathname !== "/serchResults" )
       navigate('/serchResults')
     }
 
@@ -106,14 +108,14 @@ export default function Navbar() {
             {isOpen ? <HiX size={24} /> : <TbMenu4 size={24} />}
           </button>
         </div>
-          {/* mobile sercgbar */}
+        {/* mobile sercgbar */}
 
         <div className="mt-3">
           <input
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
             placeholder="@ Search"
-            value = {InputValue}
+            value={InputValue}
             onChange={inputHandel}
 
           />

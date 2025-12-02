@@ -8,7 +8,7 @@ import { useFetch } from '../components/FetchMovies';
 
 export default function Home() {
 
-
+  
 
   const { Movies, error, isLoading } = useFetch()
 

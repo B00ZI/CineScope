@@ -20,9 +20,9 @@ export default function RatingDisplay({movie}:{movie: moviesDataType}) {
         <>
             {nums.map(num => {
                 if (userRate >= num) {
-                    return <AiFillStar size={18} className="text-yellow-500 sm:w-5 sm:h-5" />
+                    return <AiFillStar key={num} size={18} className="text-yellow-500 sm:w-5 sm:h-5" />
                 }else {
-                    return <AiOutlineStar size={18} className="text-white/30 sm:w-5 sm:h-5" /> 
+                    return <AiOutlineStar key={num} size={18} className="text-white/30 sm:w-5 sm:h-5" /> 
                 }
             })}
 

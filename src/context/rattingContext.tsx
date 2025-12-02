@@ -28,7 +28,7 @@ export default function RattingContextProvider({ children }: { children: ReactNo
                 return prev.map((item, index) =>
                     index === x ? formated : item
                 )
-                return [...prev, formated]
+           
 
             } else {
                 return [...prev, formated]

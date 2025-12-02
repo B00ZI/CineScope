@@ -9,11 +9,13 @@ export default function Top15() {
 
   const { userRatting } = useContext(RattingContext)!
 
-
+ 
   const userRattingSorted = userRatting
     .slice()
     .sort((a, b) => {
-      return b.UserRate - a.UserRate
+
+       return (b.UserRate || 0) - (a.UserRate || 0)
+      
     })
     .slice(0, 15)
 

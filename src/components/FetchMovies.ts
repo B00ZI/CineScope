@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 export function useFetch() {
+
+  const API_KEY = import.meta.env.VITE_API_KEY; 
   const [Movies, setMovies] = useState<moviesDataType[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +17,7 @@ export function useFetch() {
     async function FetchMovieData() {
       try {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=48c7cae7bad0d7bfd809b07356e38b45`,
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
         );
 
         const data = res.data.results;

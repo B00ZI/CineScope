@@ -11,7 +11,7 @@ interface CacheContextType {
 export const MovieDetailsContext = createContext<CacheContextType | undefined>(undefined);
 
 export default function MovieDetailsContextProvider({ children }: { children: ReactNode }) {
-  const [MovieCache, setMovieCache] = useState<Record<number, FormattedMovieDetails>>({}); // empty object
+  const [MovieCache, setMovieCache] = useState<Record<number, FormattedMovieDetails>>({}); 
 
   function saveMovieDetails(id: number , details: FormattedMovieDetails) {
     setMovieCache(prev => ({ ...prev, [id]: details }));

@@ -11,17 +11,16 @@ const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
 
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!;
   
-  // Only fetch details if we actually have an ID
+ 
   const { Mdetails } = useDetailsFetch(MovieId);
   const details = Mdetails;
 
-  // 1. PERFORMANCE FIX:
-  // If the modal is closed or we have no data, DO NOT RENDER ANYTHING.
+
   if (!IsOpen || !modalData) return null;
 
   return (
     <div 
-      // Click outside to close
+     
       onClick={() => setIsOpen(false)} 
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm"
     >

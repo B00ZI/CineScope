@@ -5,6 +5,7 @@ import { MovieDetailsContext } from '../context/MovieDetailsContext';
 import type { FormattedMovieDetails } from '../types/MovieDataType';
 
 export function useDetailsFetch(id: number | null) {
+  const API_KEY = import.meta.env.VITE_API_KEY; 
   const { getMovieById, saveMovieDetails } = useContext(MovieDetailsContext)!;
 
   const [Mdetails, setMdetails] = useState<FormattedMovieDetails | undefined>(
@@ -32,7 +33,7 @@ export function useDetailsFetch(id: number | null) {
       try {
         setloading(true);
         const res = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?append_to_response=credits&api_key=48c7cae7bad0d7bfd809b07356e38b45`,
+          `https://api.themoviedb.org/3/movie/${id}?append_to_response=credits&api_key=${API_KEY}`,
         );
         const data = res.data;
         // console.log(data)
