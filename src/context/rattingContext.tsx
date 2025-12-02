@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import useLocalStorage from "../hooks/LocalStorage";
+
 import type { ReactNode } from "react";
 import type { moviesDataType } from "../types/MovieDataType";
 
@@ -12,7 +14,8 @@ export const RattingContext = createContext<RattingContextType | null>(null)
 
 export default function RattingContextProvider({ children }: { children: ReactNode }) {
 
-    const [userRatting, setUserRatting] = useState<moviesDataType[]>([]);
+    // const [userRatting, setUserRatting] = useState<moviesDataType[]>([]);
+   const [userRatting, setUserRatting] = useLocalStorage<moviesDataType[]>('movieRatings', []);
 
 
     function Ratte(movie: moviesDataType, ratting: number) {

@@ -1,7 +1,7 @@
 import { useState, createContext } from "react";
 import type { moviesDataType } from "../types/MovieDataType";
 import type { ReactNode } from "react";
-
+import useLocalStorage from "../hooks/LocalStorage";
 
 interface WatchlistContextType {
 
@@ -17,7 +17,7 @@ type childrenType = { children: ReactNode }
 
 export default function WatchlistContextProvider({ children }: childrenType) {
 
-    const [WatchlistMovies, setWatchlistMovies] = useState<moviesDataType[]>([])
+    const [WatchlistMovies, setWatchlistMovies] = useLocalStorage<moviesDataType[]>(watchlist,[])
 
     const ToggleWatchlist = (Movie: moviesDataType) => {
         if (WatchlistMovies.some(m => m.id === Movie.id)) {
