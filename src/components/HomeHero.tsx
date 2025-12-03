@@ -1,7 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+// @ts-ignore
 import 'swiper/css';
+// @ts-ignore
 import 'swiper/css/navigation';
+// @ts-ignore
 import 'swiper/css/pagination';
 import { BiBookmark } from 'react-icons/bi';
 import { AiFillStar } from 'react-icons/ai';
@@ -9,54 +12,66 @@ import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
 import DetailBtn from './Ui/DetailBtn';
 
-const Movies = [
+export const Movies = [
   {
-    id: 1,
-    title: 'Interstellar Adventure',
-    overview: 'Journey through the stars in this epic sci-fi saga.',
-    rating: 8.8,
-    date: '2024',
-    backdrop: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop'
+    // The "Interstellar" from your earlier code (ID 157336)
+    id: 550, 
+    title: 'Interstellar',
+    overview: "In Earth's future, a team of explorers travel beyond our solar system in search of a new home for humanity.",
+    rating: 8.4,
+    date: '2014',
+    // Using the original backdrop path from TMDB
+    backdrop: 'https://image.tmdb.org/t/p/original/rSPw7tgCH9C6NqICZef4kZjFOQ5.jpg',
+
+    poster: null
   },
   {
-    id: 2,
-    title: 'The Dark City',
-    overview: 'A hero rises in a city consumed by shadows and crime.',
-    rating: 9.2,
-    date: '2023',
-    backdrop: 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1000&auto=format&fit=crop'
+    // A high-rated classic: "The Dark Knight" (ID 155)
+    id: 155, 
+    title: 'The Dark Knight',
+    overview: 'Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, he sets out to dismantle the remaining criminal organizations that plague the city.',
+    rating: 8.5,
+    date: '2008',
+    backdrop: 'https://image.tmdb.org/t/p/original/dqK9Hag1054hbJdfHW ',
+    poster: null
   },
   {
-    id: 3,
-    title: 'Dune Sands',
-    overview: 'Survival on a desert planet where spice is life.',
+    // A newer, popular hit: "Dune" (Part One) (ID 438631)
+    id: 438631, 
+    title: 'Dune',
+    overview: 'Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people.',
     rating: 7.9,
     date: '2021',
-    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
+    backdrop: 'https://image.tmdb.org/t/p/original/A5E7SJR9n1k1t2sR3iR5fS8eQ1G.jpg',
+    poster: null
   },
   {
-    id: 3,
-    title: 'Dune Sands',
-    overview: 'Survival on a desert planet where spice is life.',
-    rating: 7.9,
-    date: '2021',
-    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
+    // A classic action/sci-fi: "Inception" (ID 27205)
+    id: 27205, 
+    title: 'Inception',
+    overview: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
+    rating: 8.3,
+    date: '2010',
+    backdrop: 'https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCDup3AmWCSw.jpg',
+    poster: null
   },
   {
-    id: 3,
-    title: 'Dune Sands',
-    overview: 'Survival on a desert planet where spice is life.',
-    rating: 7.9,
-    date: '2021',
-    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
+    // A critically acclaimed drama: "Parasite" (ID 496243)
+    id: 496243, 
+    title: 'Parasite',
+    overview: 'All unemployed, Ki-taek and his family take peculiar interest in the wealthy and glamorous Park family, as they worm their way into their lives.',
+    rating: 8.5,
+    date: '2019',
+    backdrop: 'https://image.tmdb.org/t/p/original/7Q0NDr8s2y69D2o8k9xYv331JkY.jpg',
+    poster: null
   }
 ];
 
 const HomeHero = () => {
   const { setIsOpen, setMovieId } = useContext(ModalContext)!
 
-  function openModal(x) {
-    setIsOpen(false)
+  function openModal(x: typeof Movies[0]) {
+    setIsOpen(true)
     setMovieId(x.id)
   }
 

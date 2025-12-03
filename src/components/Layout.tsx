@@ -8,17 +8,26 @@ import { useFetch } from './FetchMovies';
 import { SerchContext } from '../context/SerchContext';
 import { WatchlistContext } from '../context/WatchlistContext';
 import { RattingContext } from '../context/rattingContext';
+import { HomeHeroContext } from '../context/HeroMovieContext';
 
 
 export default function Layout() {
-  
-  const {userRatting } = useContext(RattingContext)!
+
+  const { HeroMovies } = useContext(HomeHeroContext)!
+  const { userRatting } = useContext(RattingContext)!
   const { WatchlistMovies } = useContext(WatchlistContext)!;
   const { Movies } = useFetch()
   const { IsOpen, MovieId } = useContext(ModalContext)!
   const { serchResulte } = useContext(SerchContext)!
 
-  const combainedArray = [...(Movies ?? []), ...(serchResulte.serchdata ?? []), ...(WatchlistMovies ?? []), ...(userRatting ?? [])]
+  const combainedArray = [
+    ...(Movies ?? []),
+    ...(serchResulte.serchdata ?? []),
+    ...(WatchlistMovies ?? []),
+    ...(userRatting ?? []),
+    ...(HeroMovies ?? [])
+  ]
+
 
   const modalData = combainedArray?.find(x => x.id === MovieId);
 
