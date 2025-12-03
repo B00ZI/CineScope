@@ -1,76 +1,195 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { BiBookmark } from 'react-icons/bi';
 import { AiFillStar } from 'react-icons/ai';
-
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
-import { useFetch } from './FetchMovies';
 import DetailBtn from './Ui/DetailBtn';
 
-const HomeHero = () => {
-const { Movies } = useFetch()
-const {setIsOpen , setMovieId} = useContext(ModalContext)!
-
- 
-const testMovie = Movies?.[0]
-
-function openModal(){
-  
-  if (testMovie){
-  setIsOpen(true)
-  setMovieId(testMovie.id)
+const Movies = [
+  {
+    id: 1,
+    title: 'Interstellar Adventure',
+    overview: 'Journey through the stars in this epic sci-fi saga.',
+    rating: 8.8,
+    date: '2024',
+    backdrop: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 2,
+    title: 'The Dark City',
+    overview: 'A hero rises in a city consumed by shadows and crime.',
+    rating: 9.2,
+    date: '2023',
+    backdrop: 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 3,
+    title: 'Dune Sands',
+    overview: 'Survival on a desert planet where spice is life.',
+    rating: 7.9,
+    date: '2021',
+    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 3,
+    title: 'Dune Sands',
+    overview: 'Survival on a desert planet where spice is life.',
+    rating: 7.9,
+    date: '2021',
+    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    id: 3,
+    title: 'Dune Sands',
+    overview: 'Survival on a desert planet where spice is life.',
+    rating: 7.9,
+    date: '2021',
+    backdrop: 'https://images.unsplash.com/photo-1547234935-80c7142ee969?q=80&w=1000&auto=format&fit=crop'
   }
-}
+];
 
+const HomeHero = () => {
+  const { setIsOpen, setMovieId } = useContext(ModalContext)!
+
+  function openModal(x) {
+    setIsOpen(false)
+    setMovieId(x.id)
+  }
 
   return (
-    <div onClick={openModal} className="relative shadow-lg shadow-white/10 hover:shadow-white/20 overflow-hidden flex h-[50vh] max-h-[450px]  min-h-[300px] cursor-pointer flex-col items-start justify-center rounded-2xl bg-gray-900 p-6 sm:pl-12  ">
-        <div
-    className="absolute inset-0 bg-cover bg-center transform transition-transform duration-400 group-hover:scale-110"
-    style={{ backgroundImage: `url(${testMovie?.backdrop})` }}
-  />
-  <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent rounded-2xl" />
+    <div className="w-full">
+      <style>{`
+        .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.5);
+          opacity: 1;
+          width: 8px;
+          height: 8px;
+          transition: all 0.3s ease;
+         
+        }
+        .swiper-pagination-bullet-active {
+          background: white;
+          width: 24px;
+          border-radius: 4px;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: white;
+         
+         
+          width: 70px;
+          height: 50px;
+          padding: 10px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+      
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+          
+          transform: scale(1.2);
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        @media (max-width: 640px) {
+         
+          .swiper-button-next,
+          .swiper-button-prev {
+            display: none;
+          }
+        }
+      `}</style>
 
-      <p className="z-10 rounded-xl mb-4 border border-white/10 bg-white/7 px-3 py-1 text-[10px]">
-        Trending Now
-      </p>
-      <h2 className="z-10 mb-0.5 text-3xl font-bold">Interstellar</h2>
-      <div className="z-10 mb-4 flex items-center gap-2 text-[13px] ">
-        <AiFillStar size={15} />
-        <span>
-          <b>8.8</b> • 2010
-        </span>
-      </div>
+      <Swiper
+        modules={[Autoplay, Pagination, Navigation]}
+        pagination={{ clickable: true }}
+        navigation={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false
+        }}
+        loop={true}
+        className="rounded-2xl overflow-hidden"
+      >
+        {Movies.map((x) => (
+          <SwiperSlide key={x.id}>
+            <div
+              onClick={() => openModal(x)}
+              className="group relative overflow-hidden flex h-[50vh] max-h-[500px] min-h-[350px]
+               cursor-grab flex-col items-start justify-center 
+                bg-gray-800 p-8 sm:p-20 transition-all duration-500"
+            >
+              {/* Background Image with Zoom Effect */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url(${x?.backdrop})` }}
+              />
 
-      <div className="z-10 mb-4 flex flex-wrap gap-2 text-[11px] font-semibold md:mb-4 md:gap-2">
-        <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">
-          Action
-        </p>
-        <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">
-          Sci-Fi
-        </p>
-        <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">
-          Thriller
-        </p>
-      </div>
-      <p className="z-10 mb-5 max-w-80 text-sm md:text-sm  font-light">
-        In a dystopian future where memories can be bought and sold, a detective
-        must navigate the neon-lit streets to uncover a conspiracy that ...
-    
-      </p>
-      <div className="z-10 flex gap-2">
-        {/* <button className="flex  items-center justify-center gap-1 rounded-[10px] border border-white/10 bg-white/10 px-5 py-1 text-sm font-semibold transition-colors hover:bg-white/20">
-          <BiBookmark size={15} />
-          <span className="">Watchlist</span>
-        </button> */}
-      {/* <WatchlistBtn  Movie={testMovie} /> */}
-      <DetailBtn/>
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/60 to-transparent" />
 
-        
+              {/* Content */}
+              <div className="relative z-10 w-full max-w-2xl">
+                {/* Badge */}
+                <div className="mb-4">
+                  <span className="inline-block rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm px-3 py-1.5 text-xs font-medium tracking-wide">
+                    # YAHYA'S FAVORITES
+                  </span>
+                </div>
 
-        {/* <button onClick={()=>setIsOpen(true)} className="flex items-center justify-center gap-1 rounded-[10px] border border-white/10 text-black bg-white/80 px-3 py-1 text-sm  font-semibold transition-colors hover:bg-white">
-          <BsInfoCircle size={15} />
-             <span className="hidden min-[300px]:block">Details</span>
-        </button> */}
-      </div>
+                {/* Title */}
+                <h2 className="mb-3 text-3xl sm:text-4xl font-bold tracking-tight drop-shadow-lg">
+                  {x.title}
+                </h2>
+
+                {/* Rating & Date */}
+                <div className="mb-4 flex items-center gap-3 text-sm">
+                  <div className="flex items-center gap-1.5 text-yellow-500">
+                    <AiFillStar size={18} />
+                    <span className="font-semibold">{x.rating}</span>
+                  </div>
+                  <span className="text-white/60">•</span>
+                  <span className="text-white/80 font-medium">{x.date}</span>
+                </div>
+
+                {/* Genre Tags */}
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {['Action', 'Sci-Fi', 'Thriller'].map(genre => (
+                    <span
+                      key={genre}
+                      className="rounded-lg border border-white/12 bg-white/7 backdrop-blur-sm px-3 py-1 text-xs font-semibold tracking-wide"
+                    >
+                      {genre}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Overview */}
+                <p className="mb-6 max-w-xl text-base leading-relaxed text-white/90">
+                  {x.overview}
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3">
+                  <button className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:scale-105">
+                    <BiBookmark size={18} />
+                    <span>Watchlist</span>
+                  </button>
+
+                  <DetailBtn />
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

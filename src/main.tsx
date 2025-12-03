@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFoud";
 import Top15 from "./pages/Top15";
 import Watchlist from "./pages/Watchlist";
-import Profile from "./pages/Profile";
+
 import Layout from './components/Layout.tsx'
 import SerchResults from './pages/SerchResults.tsx'
 
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/watchlist", element: <Watchlist /> },
       { path: "/top15", element: <Top15 /> },
-      { path: "/profile", element: <Profile /> },
       { path: "/serchResults", element: <SerchResults /> },
       { path: "*", element: <NotFound /> }
 

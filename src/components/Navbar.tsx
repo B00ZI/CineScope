@@ -95,9 +95,7 @@ export default function Navbar() {
           <NavLink className={handleActive} to="/top15">
             Top 15
           </NavLink>
-          <NavLink className={handleActive} to="/profile">
-            Profile
-          </NavLink>
+       
         </nav>
       </div>
 
@@ -137,9 +135,7 @@ export default function Navbar() {
           <NavLink className={handleActive} to="/top15" onClick={mobileMenu}>
             Top 15
           </NavLink>
-          <NavLink className={handleActive} to="/profile" onClick={mobileMenu}>
-            Profile
-          </NavLink>
+        
         </nav>
       )}
     </div>
