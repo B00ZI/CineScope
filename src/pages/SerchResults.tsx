@@ -31,7 +31,8 @@ export default function SerchResults() {
    if (serchdata.length === 0) {
       return <h1> no Movie Found </h1>
    }
-
+   
+   console.log(serchdata)
    return (
       <>
 
