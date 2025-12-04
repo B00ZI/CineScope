@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation , EffectFade } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation  } from 'swiper/modules';
 // @ts-ignore
 import 'swiper/css';
 // @ts-ignore
@@ -39,7 +39,7 @@ export const Movies = [
     rating: 8.3,
     date: '2010',
     backdrop: "https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
-    poster: null
+    poster:"https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg"
   },
   {
     backdrop: "https://image.tmdb.org/t/p/original/bpV8wn48s82au37QyUJ51S7X2Vf.jpg",
@@ -165,24 +165,25 @@ const HomeHero = () => {
         }}
         speed={1100}
         loop={true}
-        className="rounded-2xl overflow-hidden"
+        className="rounded-2xl overflow-hidden shadow-xl shadow-white/5 hover:shadow-white/10 transition-shadow duration-300"
       >
         {Movies.map((x) => (
           <SwiperSlide key={x.id}>
             <div
               onClick={() => openModal(x)}
-              className="group relative overflow-hidden flex h-[450px] 
+              className="group relative overflow-hidden flex h-[470px] 
                cursor-grab flex-col items-start justify-center 
-                bg-gray-800 p-8 sm:p-20 transition-all duration-500"
+                bg-gray-800 p-8 sm:p-20 transition-all duration-500 "
             >
               {/* Background Image with Zoom Effect */}
               <div
-                className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 bg-cover  bg-center transform transition-transform duration-700 ease-out group-hover:scale-105"
                 style={{ backgroundImage: `url(${x?.backdrop})` }}
               />
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
+              
 
               {/* Content */}
               <div className="relative z-10 w-full max-w-2xl">
