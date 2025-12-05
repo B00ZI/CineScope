@@ -9,7 +9,11 @@ import { SerchContext } from '../context/SerchContext';
 import { WatchlistContext } from '../context/WatchlistContext';
 import { RattingContext } from '../context/rattingContext';
 import { HomeHeroContext } from '../context/HeroMovieContext';
+import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 
+// import ToTop from './ScrollToUp';
 
 export default function Layout() {
 
@@ -30,6 +34,16 @@ export default function Layout() {
 
 
   const modalData = combainedArray?.find(x => x.id === MovieId);
+  
+  const { pathname } = useLocation()
+  
+ useEffect(()=>{
+   
+  
+          window.scrollTo(0, 0);
+
+
+ },[pathname])
 
   return (
     <div className="flex  min-h-screen flex-col bg-black/90">
@@ -37,8 +51,10 @@ export default function Layout() {
       <main className="container py-10 mx-auto flex-1 px-6 sm:px-8 ">
 
         <Outlet />
+        <AnimatePresence>
+          {IsOpen && <Modal modalData={modalData!} />}
 
-        {IsOpen && <Modal modalData={modalData!} />}
+        </AnimatePresence>
 
 
 
