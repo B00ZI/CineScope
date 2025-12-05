@@ -7,9 +7,13 @@ import WatchlistBtn from './Ui/WatchlistBtn';
 import type { moviesDataType } from "../types/MovieDataType";
 import { useContext } from 'react';  
 import { ModalContext } from '../context/ModalContext';
+import { motion } from 'framer-motion'
 
 
-
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6 } }
+};
 
 const MovieCards = ({ movie }: { movie: moviesDataType }) => {
 
@@ -24,7 +28,9 @@ function openModal(){
 
 
   return (
-<div onClick={openModal} className="cursor-pointer group relative overflow-hidden flex h-60 flex-col justify-end 
+<motion.div 
+variants={itemVariants}
+ onClick={openModal} className="cursor-pointer group relative overflow-hidden flex h-60 flex-col justify-end 
      rounded-2xl border border-white px-3 py-4 md:h-80 md:px-4 md:py-5"
      >
   <div
@@ -49,7 +55,7 @@ function openModal(){
     <WatchlistBtn Movie={movie}  />
     <DetailBtn />
   </div>
-</div>
+</motion.div>
   );
 };
 

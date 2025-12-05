@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 // @ts-ignore
 import 'swiper/css/pagination';
 
+import {motion} from "framer-motion"
 import { AiFillStar } from 'react-icons/ai';
 import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
@@ -108,7 +109,11 @@ const HomeHero = () => {
   }
 
   return (
-    <div className="w-full">
+    <motion.div
+    initial={{opacity:0 , y:50}}
+    animate={{opacity:1 , y:0}}
+    transition={{duration:0.7}}
+     className="w-full">
       <style>{`
         .swiper-pagination-bullet {
           background: rgba(255, 255, 255, 0.5);
@@ -242,7 +247,7 @@ const HomeHero = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

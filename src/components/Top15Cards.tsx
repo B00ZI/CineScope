@@ -4,13 +4,17 @@ import { useContext } from 'react';
 import type { moviesDataType } from '../types/MovieDataType';
 import { ModalContext } from '../context/ModalContext';
 import RatingDisplay from './Ui/ratingDisplay';
-// import { useDetailsFetch } from './FetchDetails';
+import { motion } from 'framer-motion';
+
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6 } }
+};
 
 const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) => {
  
-  //iremoved the mdetalesw and the gens becous tat coses 15 fetch per loud wich is a nono 
-  // const { Mdetails } = useDetailsFetch(movie.id)
-  // console.log(Mdetails, " --------")
+ 
   const { setIsOpen , setMovieId} = useContext(ModalContext)!
   function modleHandler(){
     setIsOpen(true)
@@ -19,7 +23,9 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
   console.log(movie)
   return (
 
-    <div onClick={() => modleHandler()} className="flex flex-wrap w-full gap-4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 md:px-6 py-4 shadow-xl shadow-black/20">
+    <motion.div 
+    variants={itemVariants}
+    onClick={() => modleHandler()} className="flex flex-wrap w-full gap-4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 md:px-6 py-4 transform transition-all duration-300 ease-out shadow-lg shadow-white/5 hover:scale-[1.03] hover:border-white/80 ">
 
       {/* RNumber */}
       <div className="hidden sm:flex -mr-6 md:-mr-8 items-center justify-center">
@@ -78,7 +84,7 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
         </div>
       </div>
 
-    </div>
+    </motion.div>
 
   );
 };

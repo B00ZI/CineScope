@@ -77,7 +77,7 @@ export default function Navbar() {
           <input
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
-            placeholder="@ Search"
+            placeholder="@ Search all Movies"
             value={InputValue}
             onChange={inputHandel}
 
@@ -112,7 +112,7 @@ export default function Navbar() {
           <input
             className="w-full rounded-3xl border border-white/20 bg-white/10 px-3 py-2 placeholder:text-white/60 focus:bg-white/16 focus:outline-none"
             type="text"
-            placeholder="@ Search"
+            placeholder="@ Search all Movies"
             value={InputValue}
             onChange={inputHandel}
 

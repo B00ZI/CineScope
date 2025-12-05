@@ -8,7 +8,7 @@ import { useFetch } from '../components/FetchMovies';
 
 export default function Home() {
 
-  
+
 
   const { Movies, error, isLoading } = useFetch()
 
@@ -22,7 +22,7 @@ export default function Home() {
 
       <main className='flex flex-col gap-10 '>
         <h2 className="text-3xl w-fit text-white/70 hover:text-white font-semibold transition-colors duration-200">
-          All Movies
+          Popular Movies
         </h2>
 
         {/* --- LOADING STATE --- */}
@@ -36,16 +36,25 @@ export default function Home() {
 
         {/* --- ERROR STATE --- */}
         {error && (
-          <div className="flex flex-col items-center justify-center min-h-[200px]">
-            <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-6 text-center max-w-md">
-              <h3 className="text-red-400 font-bold text-lg mb-2">Oops! Something went wrong</h3>
-              <p className="text-white/60 text-sm mb-4">{error}</p>
-              <button
-                onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg transition-colors text-sm font-medium"
-              >
-                Try Again
-              </button>
+          <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
+            <div className="relative overflow-hidden rounded-2xl   backdrop-blur-sm p-8 text-center max-w-md shadow-lg">
+              {/* Subtle gradient background */}
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent" /> */}
+
+              <div className="relative z-10">
+                <h3 className="text-white font-bold text-xl mb-2 tracking-tight">
+                  Oops! Something went wrong
+                </h3>
+                <p className="text-white/30 text-sm mb-4 leading-relaxed">
+                  {error}
+                </p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="flex items-center justify-center gap-2 rounded-xl text-red-300 border border-red/20  backdrop-blur-sm px-6 py-2.5 cursor-pointer text-sm font-semibold transition-all duration-300 hover:scale-105 mx-auto"
+                >
+                  <span>Try Again</span>
+                </button>
+              </div>
             </div>
           </div>
         )}
