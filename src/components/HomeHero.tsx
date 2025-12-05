@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation  } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 // @ts-ignore
 import 'swiper/css';
 // @ts-ignore
@@ -12,6 +12,7 @@ import { ModalContext } from '../context/ModalContext';
 import { useContext } from 'react';
 import DetailBtn from './Ui/DetailBtn';
 import WatchlistBtn from './Ui/WatchlistBtn';
+
 export const Movies = [
   {
     backdrop: "https://image.tmdb.org/t/p/original/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg",
@@ -39,7 +40,7 @@ export const Movies = [
     rating: 8.3,
     date: '2010',
     backdrop: "https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
-    poster:"https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg"
+    poster: "https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg"
   },
   {
     backdrop: "https://image.tmdb.org/t/p/original/bpV8wn48s82au37QyUJ51S7X2Vf.jpg",
@@ -154,8 +155,8 @@ const HomeHero = () => {
       `}</style>
 
       <Swiper
-        modules={[Autoplay, Pagination, Navigation ]}
-        
+        modules={[Autoplay, Pagination, Navigation]}
+
         pagination={{ clickable: true }}
         navigation={true}
         autoplay={{
@@ -183,7 +184,7 @@ const HomeHero = () => {
 
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
-              
+
 
               {/* Content */}
               <div className="relative z-10 w-full max-w-2xl">

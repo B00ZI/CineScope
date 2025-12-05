@@ -15,7 +15,7 @@ export const RattingContext = createContext<RattingContextType | null>(null)
 export default function RattingContextProvider({ children }: { children: ReactNode }) {
 
     // const [userRatting, setUserRatting] = useState<moviesDataType[]>([]);
-   const [userRatting, setUserRatting] = useLocalStorage<moviesDataType[]>('movieRatings', []);
+    const [userRatting, setUserRatting] = useLocalStorage<moviesDataType[]>('movieRatings', []);
 
 
     function Ratte(movie: moviesDataType, ratting: number) {
@@ -26,13 +26,29 @@ export default function RattingContextProvider({ children }: { children: ReactNo
 
             const x = prev.findIndex(item => item.id === formated.id)
 
-            if (x > -1) {
 
-                return prev.map((item, index) =>
-                    index === x ? formated : item
-                )
+
            
+            // update 
+            if (x > -1) {
+                  
 
+                if( prev[x].UserRate === formated.UserRate ){
+                      
+                    return prev.filter( x => x.id !== formated.id )
+
+                }else{
+                    
+                    return prev.map((item, index) =>
+                        index === x ? formated : item
+                    )
+
+                }
+
+             
+                  
+
+            // add 
             } else {
                 return [...prev, formated]
             }
