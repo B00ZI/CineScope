@@ -7,6 +7,8 @@ import { useDetailsFetch } from './FetchDetails';
 import Ratting from './Ui/Ratting';
 import type { moviesDataType } from '../types/MovieDataType';
 
+import { motion } from 'framer-motion'; // Add import
+
 const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
 
   const { IsOpen, setIsOpen, MovieId } = useContext(ModalContext)!;
@@ -19,12 +21,18 @@ const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
   if (!IsOpen || !modalData) return null;
 
   return (
-    <div 
-     
+    <motion.div  
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
       onClick={() => setIsOpen(false)} 
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm"
     >
-      <div 
+      <motion.div 
+       initial={{opacity:0 , y:50}}
+       animate={{opacity:1 , y:0}}
+       exit={{opacity:0 , y:50}}
+       transition={{duration: 0.6}}
    
         onClick={(e) => e.stopPropagation()} 
         className="bg-linear-to-b from-gray-900/95 to-black/95 h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 shadow-2xl backdrop-blur-md relative"
@@ -128,8 +136,8 @@ const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
             <WatchlistBtn Movie={modalData} />
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 export default Modal;
