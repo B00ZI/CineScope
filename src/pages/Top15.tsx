@@ -30,6 +30,20 @@ export default function Top15() {
     })
     .slice(0, 15)
 
+   if (userRatting.length === 0) {
+     return (
+        <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
+            <h1 className="text-3xl font-semibold text-white/70 mb-4">No Movies Rated Yet!</h1>
+            <p className="text-white/50 text-lg max-w-md">
+                Rate some movies by clicking on them to open the details modal and select your stars.
+            </p>
+        </div>
+    );
+  }
+
+
+
+
   return (
     <>
       <h1 className="w-fit text-3xl font-semibold text-white/70 hover:text-white mb-[60px]">
