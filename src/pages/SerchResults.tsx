@@ -36,7 +36,9 @@ export default function SerchResults() {
    return (
       <>
 
-         <h1 className="aling-center">Serch Results</h1>
+           <h1 className="w-fit text-3xl font-semibold text-white/70 hover:text-white mb-[60px]">
+        Search Results:
+      </h1>
          <MovieCardRendrer Movies={serchdata} ></MovieCardRendrer>
       </>
 
