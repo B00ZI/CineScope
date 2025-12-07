@@ -48,7 +48,7 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
 <div className="flex flex-wrap items-center gap-2 sm:gap-4 flex-1 min-w-0">
     
     {/* Movie Info - Responsive text */}
-    <div className="flex flex-col justify-center gap-0.5 sm:gap-1 flex-1 min-w-[90px]">
+    <div className="flex flex-col justify-center gap-0.5 sm:gap-1 flex-1 min-w-[75px]">
       <h2 className="text-sm sm:text-lg md:text-2xl font-bold truncate leading-tight">
         {movie.title}
       </h2>
