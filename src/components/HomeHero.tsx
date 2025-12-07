@@ -115,12 +115,18 @@ const HomeHero = () => {
     transition={{duration:0.4}}
      className="w-full">
       <style>{`
+       .swiper-pagination{
+        
+        margin-bottom:15px
+       }
+
         .swiper-pagination-bullet {
           background: rgba(255, 255, 255, 0.5);
           opacity: 1;
           width: 8px;
           height: 8px;
           transition: all 0.3s ease;
+          
          
         }
         .swiper-pagination-bullet-active {
@@ -171,7 +177,7 @@ const HomeHero = () => {
         }}
         speed={700}
         loop={true}
-        className="rounded-2xl overflow-hidden shadow-xl shadow-white/5 hover:shadow-white/10 transition-shadow duration-300"
+        className="rounded-2xl overflow-hidden border bg-red-500 border-white/20"
       >
         {Movies.map((x) => (
           <SwiperSlide key={x.id}>
@@ -179,9 +185,9 @@ const HomeHero = () => {
               onClick={() => openModal(x)}
               className="group relative overflow-hidden flex h-[470px] 
                cursor-grab flex-col items-start justify-center 
-                bg-gray-800 p-8 sm:p-20 transition-all duration-500 "
+                bg-gray-800 p-8 sm:p-20 "
             >
-              {/* Background Image with Zoom Effect */}
+             
               <div
                 className="absolute inset-0 bg-cover  bg-center "
                 style={{ backgroundImage: `url(${x?.backdrop})` }}
