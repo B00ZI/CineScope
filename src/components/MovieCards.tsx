@@ -30,7 +30,7 @@ function openModal(){
   return (
 <motion.div 
 variants={itemVariants}
- onClick={openModal} className="cursor-pointer group relative overflow-hidden flex h-60 flex-col justify-end 
+ onClick={openModal} className="cursor-pointer group relative overflow-hidden flex h-50 flex-col justify-end 
      rounded-2xl border border-white px-3 py-4 md:h-80 md:px-4 md:py-5"
      >
   <div
@@ -40,16 +40,14 @@ variants={itemVariants}
   <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent rounded-2xl" />
 
   <h2 className="relative z-10 text-lg font-bold md:text-xl">{movie.title}</h2>
-  <div className="relative z-10 mb-3 flex items-center gap-1 text-sm">
+  <div className="relative z-10 mb-5 flex items-center gap-1 text-sm">
     <AiFillStar size={15} />
     <span>
       <b>{movie.rating}</b> • {movie.date}
     </span>
   </div>
 
-  <div className="relative z-10 mb-5 flex flex-wrap gap-1 text-[11px] font-semibold md:gap-2">
-    {/* {movie.catig.map(type => <p className="rounded-xl border border-white/10 bg-white/7 px-2 py-0.5">{type}</p>)} */}
-  </div>
+
     
   <div className="flex gap-3 relative z-10">
     <WatchlistBtn Movie={movie}  />
