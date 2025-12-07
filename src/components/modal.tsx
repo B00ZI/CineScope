@@ -132,7 +132,7 @@ const Modal = ({ modalData }: { modalData: moviesDataType | null }) => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row pt-4">
+          <div className="flex  ">
             <WatchlistBtn Movie={modalData} />
           </div>
         </div>

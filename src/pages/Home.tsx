@@ -38,9 +38,6 @@ export default function Home() {
         {error && (
           <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
             <div className="relative overflow-hidden rounded-2xl   backdrop-blur-sm p-8 text-center max-w-md shadow-lg">
-              {/* Subtle gradient background */}
-              {/* <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent" /> */}
-
               <div className="relative z-10">
                 <h3 className="text-white font-bold text-xl mb-2 tracking-tight">
                   Oops! Something went wrong
