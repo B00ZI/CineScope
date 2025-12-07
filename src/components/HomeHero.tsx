@@ -177,7 +177,7 @@ const HomeHero = () => {
         }}
         speed={700}
         loop={true}
-        className="rounded-2xl overflow-hidden border bg-red-500 border-white/20"
+        className="rounded-2xl overflow-hidden border  border-white/20"
       >
         {Movies.map((x) => (
           <SwiperSlide key={x.id}>
