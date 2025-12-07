@@ -44,11 +44,11 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
     style={{ backgroundImage: `url(${movie.poster})` }}>
   </div>
 
-  {/* Movie Info + Rating Wrapper - allows wrapping on small screens */}
-  <div className="flex flex-wrap items-center gap-2 sm:gap-4 flex-1 min-w-0">
+  {/* wrapping on small screens */}
+<div className="flex flex-wrap items-center gap-2 sm:gap-4 flex-1 min-w-0">
     
     {/* Movie Info - Responsive text */}
-    <div className="flex flex-col justify-center gap-0.5 sm:gap-1 flex-1 min-w-0">
+    <div className="flex flex-col justify-center gap-0.5 sm:gap-1 flex-1 min-w-[90px]">
       <h2 className="text-sm sm:text-lg md:text-2xl font-bold truncate leading-tight">
         {movie.title}
       </h2>
