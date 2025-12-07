@@ -169,7 +169,7 @@ const HomeHero = () => {
           disableOnInteraction: false,
           pauseOnMouseEnter: true
         }}
-        speed={1100}
+        speed={700}
         loop={true}
         className="rounded-2xl overflow-hidden shadow-xl shadow-white/5 hover:shadow-white/10 transition-shadow duration-300"
       >
