@@ -23,68 +23,56 @@ const Top15Cards = ({ movie, index }: { movie: moviesDataType, index: number }) 
   console.log(movie)
   return (
 
-    <motion.div 
-    variants={itemVariants}
-    onClick={() => modleHandler()} className="flex flex-wrap w-full gap-4 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 md:px-6 py-4 transform transition-all duration-300 ease-out shadow-lg shadow-white/5 hover:scale-[1.03] hover:border-white/80 ">
+<motion.div 
+  variants={itemVariants}
+  onClick={() => modleHandler()} 
+  className="flex w-full gap-2 sm:gap-4 rounded-2xl sm:rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm px-3 sm:px-4 md:px-6 py-3 sm:py-4 transform transition-all duration-300 ease-out shadow-lg shadow-white/5 hover:scale-[1.03] hover:border-white/80">
 
-      {/* RNumber */}
-      <div className="hidden sm:flex -mr-6 md:-mr-8 items-center justify-center">
-        <p
-          style={{ fontFamily: 'Bebas Neue' }}
-          className="z-20 -mb-4 text-[100px] md:text-[120px] leading-none font-black text-white/15"
-        >
-          {index + 1}
-        </p>
+  {/* Ranking Number - Responsive sizing */}
+  <div className="flex items-center justify-center -mr-3 sm:-mr-6 md:-mr-8">
+    <p
+      style={{ fontFamily: 'Bebas Neue' }}
+      className="text-[60px] sm:text-[100px] md:text-[120px] leading-none font-black text-white/15"
+    >
+      {index + 1}
+    </p>
+  </div>
+
+  {/* Image - Responsive sizing */}
+  <div
+    className="h-20 w-16 sm:h-28 sm:w-24 md:h-32 md:w-28 rounded-xl sm:rounded-2xl bg-linear-to-br from-gray-800 to-gray-900 shadow-lg shrink-0 bg-cover bg-center"
+    style={{ backgroundImage: `url(${movie.poster})` }}>
+  </div>
+
+  {/* Movie Info + Rating Wrapper - allows wrapping on small screens */}
+  <div className="flex flex-wrap items-center gap-2 sm:gap-4 flex-1 min-w-0">
+    
+    {/* Movie Info - Responsive text */}
+    <div className="flex flex-col justify-center gap-0.5 sm:gap-1 flex-1 min-w-0">
+      <h2 className="text-sm sm:text-lg md:text-2xl font-bold truncate leading-tight">
+        {movie.title}
+      </h2>
+      <div className="flex items-center gap-1 text-[11px] sm:text-sm">
+        <AiFillStar size={14} className="text-yellow-400 shrink-0 sm:w-4 sm:h-4" />
+        <span>
+          <b>{movie.rating}</b> • {movie.date}
+        </span>
       </div>
+    </div>
 
-      {/* Mobile Ranking Number (small) */}
-      <div className="sm:hidden flex items-center justify-center z-30  -mr-6">
-        <p
-          style={{ fontFamily: 'Bebas Neue' }}
-          className="text-[80px] leading-none font-black text-white/15"
-        >
-          {index + 1}
-
-        </p>
+    {/* Rating Section - wraps to next line on small screens */}
+    <div className="flex flex-col gap-0.5 justify-center min-w-fit ml-auto sm:ml-0">
+      <p className="text-white/50 text-[10px] sm:text-xs md:text-sm text-right whitespace-nowrap">
+        Your Rating
+      </p>
+      <div className="flex gap-0.5 justify-end">
+        <RatingDisplay movie={movie}></RatingDisplay>
       </div>
+    </div>
+    
+  </div>
 
-      {/* Image */}
-      <div
-        className="h-24 w-20 bg-cover bg-center sm:h-28 sm:w-24 md:h-32 md:w-28 rounded-2xl bg-linear-to-br from-gray-800 to-gray-900 shadow-lg shrink-0"
-        style={{ backgroundImage: `url(${movie.poster})` }}>
-        {/* <img className='w-100% h-100%' src={movie.poster} alt={movie.title} /> */}
-      </div>
-
-      {/* Movie Info */}
-      <div className="flex flex-col justify-center gap-1 flex-1 min-w-30">
-        <h2 className="text-base sm:text-lg md:text-2xl font-bold truncate">{movie.title}</h2>
-        <div className="mb-1 md:mb-2 flex items-center gap-1 text-xs sm:text-sm">
-          <AiFillStar size={16} className="text-yellow-400 shrink-0" />
-          <span>
-            <b>{movie.rating}</b> • {movie.date}
-          </span>
-        </div>
-{/* 
-        <div className="flex flex-wrap gap-1 text-[10px] sm:text-[11px] font-semibold md:gap-2">
-
-          {Mdetails?.genres?.slice(0, 3)
-              .map((gen: string) => {
-                return <p className="rounded-lg border border-white/15 bg-white/10 px-2 py-0.5 shadow-sm">
-                  {gen}
-                </p>
-              })}
-        </div> */}
-      </div>
-
-      {/* Rating Section */}
-      <div className="flex flex-col gap-0.5 ml-auto justify-center  min-w-30 mt-2 sm:mt-0">
-        <p className="text-white/50 text-xs sm:text-sm text-right">Your Rating</p>
-        <div className="flex gap-0.5 justify-end">
-          <RatingDisplay movie={movie}></RatingDisplay>
-        </div>
-      </div>
-
-    </motion.div>
+</motion.div>
 
   );
 };
