@@ -39,7 +39,7 @@ variants={itemVariants}
   />
   <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent rounded-2xl" />
 
-  <h2 className="relative z-10 text-lg font-bold md:text-xl">{movie.title}</h2>
+  <h2 className="relative z-10 text-lg font-bold md:text-xl line-clamp-2 leading-tight">{movie.title}</h2>
   <div className="relative z-10 mb-5 flex items-center gap-1 text-sm">
     <AiFillStar size={15} />
     <span>

@@ -50,7 +50,7 @@ export default function SerchResults() {
             Start Your Search
          </h3>
          <p className="text-white/50 max-w-sm">
-            Enter a movie title or TV show name in the search bar above to find details, rate, and add to your watchlist.
+            Enter a movie title in the search bar above to find details, rate, and add to your watchlist.
          </p>
       </div>
    }
