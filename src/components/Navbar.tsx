@@ -121,7 +121,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <nav className="absolute top-full left-0 flex w-full flex-col gap-6 border-b border-white/20 bg-black/70 px-9 py-5 text-center text-sm font-semibold md:hidden">
+        <nav className="absolute top-full left-0 flex w-full flex-col gap-6 border-b border-white/20 bg-black/90 px-9 py-5 text-center text-sm font-semibold md:hidden">
           <NavLink className={handleActive} to="/" onClick={mobileMenu}>
             Home
           </NavLink>
