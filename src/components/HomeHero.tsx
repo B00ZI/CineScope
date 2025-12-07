@@ -183,7 +183,7 @@ const HomeHero = () => {
             >
               {/* Background Image with Zoom Effect */}
               <div
-                className="absolute inset-0 bg-cover  bg-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 bg-cover  bg-center "
                 style={{ backgroundImage: `url(${x?.backdrop})` }}
               />
 
